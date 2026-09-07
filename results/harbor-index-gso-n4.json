@@ -1,0 +1,527 @@
+[
+  {
+    "repetition": 1,
+    "provider": "smol-branch",
+    "dataset": "harbor-index/harbor-index-1.0",
+    "task": "gso-speedup-numpy-strings",
+    "task_tree_sha256": "7bc9aee3dddf8a20dbfd8226e0a5ac8971a245639f8db8f17969c26285932664",
+    "workload_image": {
+      "environment": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-agent-20260613",
+        "id": "ee1fc0c7be0b8305eb7551cdbedc6884c36ab7296b33c2b8b7998f5c055308aa",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:1a46d307372c7e7aaae3602f20c51bd57efc88ce51536c338cffc16e9de479fa"
+      },
+      "verifier": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-verifier-20260613",
+        "id": "02687af9e965dca0df5c832592d1e9b3c246ca20ac683a0dfe47dd9f6ebe7ca8",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:540c742a785522d7c008530758f98b79556674f0c23ac9163b2d9f4b8d44a48d"
+      }
+    },
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "nop",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 62.175455856951885,
+    "return_code": 0,
+    "wall_seconds": 51.8069305960089,
+    "harbor_seconds": 49.096781,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "environment_setup_seconds": {
+      "min": 0.357951,
+      "p50": 0.362871,
+      "p95": 0.363539,
+      "p99": 0.363539,
+      "max": 0.363539
+    },
+    "agent_execution_seconds": {
+      "min": 3.6e-05,
+      "p50": 4.6e-05,
+      "p95": 7e-05,
+      "p99": 7e-05,
+      "max": 7e-05
+    },
+    "artifact_handoff_seconds": {
+      "min": 12.629025,
+      "p50": 12.6346745,
+      "p95": 12.645468,
+      "p99": 12.645468,
+      "max": 12.645468
+    },
+    "verifier_seconds": {
+      "min": 27.065959,
+      "p50": 34.922537000000005,
+      "p95": 36.017342,
+      "p99": 36.017342,
+      "max": 36.017342
+    },
+    "approximate_peak_host_memory_bytes": 11615657984,
+    "result_path": "results/raw/20260906-044426-r1-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+      "machine": "x86_64",
+      "logical_cpus": 8
+    },
+    "software": {
+      "python": "3.13.15",
+      "harbor": "0.22.0",
+      "smolmachines": "1.14.0",
+      "smol_sdk_revision": null,
+      "smolvm_revision": null,
+      "docker_server": "6.1.0",
+      "container_runtime": "podman version 6.1.0"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "machine_create_seconds": 28.938825093093328,
+      "prepare_script_seconds": 7.259659469127655e-07,
+      "verifier_machine_create_seconds": 33.23662920994684,
+      "verifier_prepare_script_seconds": 8.279457688331604e-07
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 1,
+    "provider": "docker",
+    "dataset": "harbor-index/harbor-index-1.0",
+    "task": "gso-speedup-numpy-strings",
+    "task_tree_sha256": "7bc9aee3dddf8a20dbfd8226e0a5ac8971a245639f8db8f17969c26285932664",
+    "workload_image": {
+      "environment": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-agent-20260613",
+        "id": "ee1fc0c7be0b8305eb7551cdbedc6884c36ab7296b33c2b8b7998f5c055308aa",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:1a46d307372c7e7aaae3602f20c51bd57efc88ce51536c338cffc16e9de479fa"
+      },
+      "verifier": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-verifier-20260613",
+        "id": "02687af9e965dca0df5c832592d1e9b3c246ca20ac683a0dfe47dd9f6ebe7ca8",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:540c742a785522d7c008530758f98b79556674f0c23ac9163b2d9f4b8d44a48d"
+      }
+    },
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "nop",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 52.167179367970675,
+    "harbor_seconds": 48.973961,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.849631,
+      "p50": 2.200172,
+      "p95": 2.352723,
+      "p99": 2.352723,
+      "max": 2.352723
+    },
+    "agent_execution_seconds": {
+      "min": 5.5e-05,
+      "p50": 6.25e-05,
+      "p95": 6.5e-05,
+      "p99": 6.5e-05,
+      "max": 6.5e-05
+    },
+    "artifact_handoff_seconds": {
+      "min": 25.835454,
+      "p50": 25.993782,
+      "p95": 26.379327,
+      "p99": 26.379327,
+      "max": 26.379327
+    },
+    "verifier_seconds": {
+      "min": 19.748213,
+      "p50": 20.208216999999998,
+      "p95": 20.532484,
+      "p99": 20.532484,
+      "max": 20.532484
+    },
+    "approximate_peak_host_memory_bytes": 448061440,
+    "result_path": "results/raw/20260906-044426-r1-docker/result.json",
+    "host": {
+      "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+      "machine": "x86_64",
+      "logical_cpus": 8
+    },
+    "software": {
+      "python": "3.13.15",
+      "harbor": "0.22.0",
+      "smolmachines": "1.14.0",
+      "smol_sdk_revision": null,
+      "smolvm_revision": null,
+      "docker_server": "6.1.0",
+      "container_runtime": "podman version 6.1.0"
+    },
+    "provider_prepare_seconds": 1.9367847699904814,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  },
+  {
+    "repetition": 2,
+    "provider": "docker",
+    "dataset": "harbor-index/harbor-index-1.0",
+    "task": "gso-speedup-numpy-strings",
+    "task_tree_sha256": "7bc9aee3dddf8a20dbfd8226e0a5ac8971a245639f8db8f17969c26285932664",
+    "workload_image": {
+      "environment": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-agent-20260613",
+        "id": "ee1fc0c7be0b8305eb7551cdbedc6884c36ab7296b33c2b8b7998f5c055308aa",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:1a46d307372c7e7aaae3602f20c51bd57efc88ce51536c338cffc16e9de479fa"
+      },
+      "verifier": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-verifier-20260613",
+        "id": "02687af9e965dca0df5c832592d1e9b3c246ca20ac683a0dfe47dd9f6ebe7ca8",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:540c742a785522d7c008530758f98b79556674f0c23ac9163b2d9f4b8d44a48d"
+      }
+    },
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "nop",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 52.89132364897523,
+    "harbor_seconds": 49.788434,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.963321,
+      "p50": 2.1787275,
+      "p95": 2.350717,
+      "p99": 2.350717,
+      "max": 2.350717
+    },
+    "agent_execution_seconds": {
+      "min": 5.8e-05,
+      "p50": 6.199999999999999e-05,
+      "p95": 6.9e-05,
+      "p99": 6.9e-05,
+      "max": 6.9e-05
+    },
+    "artifact_handoff_seconds": {
+      "min": 27.582004,
+      "p50": 27.702773,
+      "p95": 28.079251,
+      "p99": 28.079251,
+      "max": 28.079251
+    },
+    "verifier_seconds": {
+      "min": 18.988684,
+      "p50": 19.3769275,
+      "p95": 19.771098,
+      "p99": 19.771098,
+      "max": 19.771098
+    },
+    "approximate_peak_host_memory_bytes": 812974080,
+    "result_path": "results/raw/20260906-044426-r2-docker/result.json",
+    "host": {
+      "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+      "machine": "x86_64",
+      "logical_cpus": 8
+    },
+    "software": {
+      "python": "3.13.15",
+      "harbor": "0.22.0",
+      "smolmachines": "1.14.0",
+      "smol_sdk_revision": null,
+      "smolvm_revision": null,
+      "docker_server": "6.1.0",
+      "container_runtime": "podman version 6.1.0"
+    },
+    "provider_prepare_seconds": 1.9367847699904814,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  },
+  {
+    "repetition": 2,
+    "provider": "smol-branch",
+    "dataset": "harbor-index/harbor-index-1.0",
+    "task": "gso-speedup-numpy-strings",
+    "task_tree_sha256": "7bc9aee3dddf8a20dbfd8226e0a5ac8971a245639f8db8f17969c26285932664",
+    "workload_image": {
+      "environment": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-agent-20260613",
+        "id": "ee1fc0c7be0b8305eb7551cdbedc6884c36ab7296b33c2b8b7998f5c055308aa",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:1a46d307372c7e7aaae3602f20c51bd57efc88ce51536c338cffc16e9de479fa"
+      },
+      "verifier": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-verifier-20260613",
+        "id": "02687af9e965dca0df5c832592d1e9b3c246ca20ac683a0dfe47dd9f6ebe7ca8",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:540c742a785522d7c008530758f98b79556674f0c23ac9163b2d9f4b8d44a48d"
+      }
+    },
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "nop",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 62.175455856951885,
+    "return_code": 0,
+    "wall_seconds": 57.02808293199632,
+    "harbor_seconds": 54.21944,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "environment_setup_seconds": {
+      "min": 3.103048,
+      "p50": 3.1067394999999998,
+      "p95": 3.113355,
+      "p99": 3.113355,
+      "max": 3.113355
+    },
+    "agent_execution_seconds": {
+      "min": 4.2e-05,
+      "p50": 4.65e-05,
+      "p95": 7.3e-05,
+      "p99": 7.3e-05,
+      "max": 7.3e-05
+    },
+    "artifact_handoff_seconds": {
+      "min": 12.727739,
+      "p50": 12.737197,
+      "p95": 12.742342,
+      "p99": 12.742342,
+      "max": 12.742342
+    },
+    "verifier_seconds": {
+      "min": 31.270416,
+      "p50": 37.155708000000004,
+      "p95": 38.292408,
+      "p99": 38.292408,
+      "max": 38.292408
+    },
+    "approximate_peak_host_memory_bytes": 14603730944,
+    "result_path": "results/raw/20260906-044426-r2-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+      "machine": "x86_64",
+      "logical_cpus": 8
+    },
+    "software": {
+      "python": "3.13.15",
+      "harbor": "0.22.0",
+      "smolmachines": "1.14.0",
+      "smol_sdk_revision": null,
+      "smolvm_revision": null,
+      "docker_server": "6.1.0",
+      "container_runtime": "podman version 6.1.0"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "machine_create_seconds": 28.938825093093328,
+      "prepare_script_seconds": 7.259659469127655e-07,
+      "verifier_machine_create_seconds": 33.23662920994684,
+      "verifier_prepare_script_seconds": 8.279457688331604e-07
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 3,
+    "provider": "smol-branch",
+    "dataset": "harbor-index/harbor-index-1.0",
+    "task": "gso-speedup-numpy-strings",
+    "task_tree_sha256": "7bc9aee3dddf8a20dbfd8226e0a5ac8971a245639f8db8f17969c26285932664",
+    "workload_image": {
+      "environment": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-agent-20260613",
+        "id": "ee1fc0c7be0b8305eb7551cdbedc6884c36ab7296b33c2b8b7998f5c055308aa",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:1a46d307372c7e7aaae3602f20c51bd57efc88ce51536c338cffc16e9de479fa"
+      },
+      "verifier": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-verifier-20260613",
+        "id": "02687af9e965dca0df5c832592d1e9b3c246ca20ac683a0dfe47dd9f6ebe7ca8",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:540c742a785522d7c008530758f98b79556674f0c23ac9163b2d9f4b8d44a48d"
+      }
+    },
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "nop",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 62.175455856951885,
+    "return_code": 0,
+    "wall_seconds": 53.20371545699891,
+    "harbor_seconds": 50.249775,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "environment_setup_seconds": {
+      "min": 2.368018,
+      "p50": 2.3745045,
+      "p95": 2.376385,
+      "p99": 2.376385,
+      "max": 2.376385
+    },
+    "agent_execution_seconds": {
+      "min": 4.4e-05,
+      "p50": 5.4499999999999997e-05,
+      "p95": 8.1e-05,
+      "p99": 8.1e-05,
+      "max": 8.1e-05
+    },
+    "artifact_handoff_seconds": {
+      "min": 12.624364,
+      "p50": 12.625119999999999,
+      "p95": 12.634897,
+      "p99": 12.634897,
+      "max": 12.634897
+    },
+    "verifier_seconds": {
+      "min": 33.12267,
+      "p50": 34.0530395,
+      "p95": 35.164854,
+      "p99": 35.164854,
+      "max": 35.164854
+    },
+    "approximate_peak_host_memory_bytes": 6735564800,
+    "result_path": "results/raw/20260906-044426-r3-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+      "machine": "x86_64",
+      "logical_cpus": 8
+    },
+    "software": {
+      "python": "3.13.15",
+      "harbor": "0.22.0",
+      "smolmachines": "1.14.0",
+      "smol_sdk_revision": null,
+      "smolvm_revision": null,
+      "docker_server": "6.1.0",
+      "container_runtime": "podman version 6.1.0"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "machine_create_seconds": 28.938825093093328,
+      "prepare_script_seconds": 7.259659469127655e-07,
+      "verifier_machine_create_seconds": 33.23662920994684,
+      "verifier_prepare_script_seconds": 8.279457688331604e-07
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 3,
+    "provider": "docker",
+    "dataset": "harbor-index/harbor-index-1.0",
+    "task": "gso-speedup-numpy-strings",
+    "task_tree_sha256": "7bc9aee3dddf8a20dbfd8226e0a5ac8971a245639f8db8f17969c26285932664",
+    "workload_image": {
+      "environment": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-agent-20260613",
+        "id": "ee1fc0c7be0b8305eb7551cdbedc6884c36ab7296b33c2b8b7998f5c055308aa",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:1a46d307372c7e7aaae3602f20c51bd57efc88ce51536c338cffc16e9de479fa"
+      },
+      "verifier": {
+        "reference": "docker.io/crystalxyz/harbor-index-batch1:gso-speedup-numpy-strings-verifier-20260613",
+        "id": "02687af9e965dca0df5c832592d1e9b3c246ca20ac683a0dfe47dd9f6ebe7ca8",
+        "repository_digest": "docker.io/crystalxyz/harbor-index-batch1@sha256:540c742a785522d7c008530758f98b79556674f0c23ac9163b2d9f4b8d44a48d"
+      }
+    },
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "nop",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 51.06925304397009,
+    "harbor_seconds": 47.972329,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.870569,
+      "p50": 2.1693025,
+      "p95": 2.29065,
+      "p99": 2.29065,
+      "max": 2.29065
+    },
+    "agent_execution_seconds": {
+      "min": 5.3e-05,
+      "p50": 6.1e-05,
+      "p95": 6.9e-05,
+      "p99": 6.9e-05,
+      "max": 6.9e-05
+    },
+    "artifact_handoff_seconds": {
+      "min": 25.454132,
+      "p50": 25.9374825,
+      "p95": 26.245257,
+      "p99": 26.245257,
+      "max": 26.245257
+    },
+    "verifier_seconds": {
+      "min": 19.102814,
+      "p50": 19.4713275,
+      "p95": 19.855741,
+      "p99": 19.855741,
+      "max": 19.855741
+    },
+    "approximate_peak_host_memory_bytes": 382050304,
+    "result_path": "results/raw/20260906-044426-r3-docker/result.json",
+    "host": {
+      "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+      "machine": "x86_64",
+      "logical_cpus": 8
+    },
+    "software": {
+      "python": "3.13.15",
+      "harbor": "0.22.0",
+      "smolmachines": "1.14.0",
+      "smol_sdk_revision": null,
+      "smolvm_revision": null,
+      "docker_server": "6.1.0",
+      "container_runtime": "podman version 6.1.0"
+    },
+    "provider_prepare_seconds": 1.9367847699904814,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  }
+]

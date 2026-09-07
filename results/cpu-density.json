@@ -1,0 +1,1835 @@
+{
+  "config": {
+    "fanout": 16,
+    "hold_seconds": 15,
+    "parallel": 16,
+    "repetitions": 5,
+    "rounds": 128,
+    "state_mib": 256
+  },
+  "host": {
+    "cpu_model": "Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz",
+    "logical_cpus": 8,
+    "machine": "x86_64",
+    "memory_bytes": 101173379072,
+    "processor": "",
+    "release": "7.1.11-arch1-1",
+    "system": "Linux"
+  },
+  "notes": [
+    "Both providers run the exact same content-addressed image and output gate.",
+    "The Smol source initializes the immutable byte state before the branchpoint; each native container initializes its own copy.",
+    "Host MemAvailable deltas measure total physical pressure, including the retained Smol source, and can contain unrelated host noise.",
+    "Each MemAvailable observation is the median of nine samples; provider order alternates between repetitions.",
+    "Process RSS/PSS is intentionally excluded because it undercounts retained file-backed snapshot pages that are resident without a current process mapping.",
+    "Preparation is excluded from wave time and reported separately.",
+    "The capture window is SmolVM's checkpoint-and-resume span; child admission and workload completion remain separate timings."
+  ],
+  "raw": [
+    {
+      "capture_window_ms": 45.0,
+      "idle_source_cpu_percent": 0.0,
+      "incremental_children_memory_bytes": 198844416,
+      "launch_seconds": 1.3563592970022,
+      "physical_memory_bytes": 733929472,
+      "prepare_seconds": 2.009929439984262,
+      "provider": "smol-branch",
+      "repetition": 1,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 469.686
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 575.333
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 529.788
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 572.859
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 484.258
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 432.084
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 603.154
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 586.395
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 275.024
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 494.203
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 412.959
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 311.562
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 494.629
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 413.96
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 578.452
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 157.774,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 277.568
+        }
+      ],
+      "source_physical_memory_bytes": 535085056,
+      "wave_seconds": 1.7083204640075564,
+      "work_ms": [
+        469.686,
+        575.333,
+        529.788,
+        572.859,
+        484.258,
+        432.084,
+        603.154,
+        586.395,
+        275.024,
+        494.203,
+        412.959,
+        311.562,
+        494.629,
+        413.96,
+        578.452,
+        277.568
+      ]
+    },
+    {
+      "capture_window_ms": null,
+      "idle_source_cpu_percent": null,
+      "incremental_children_memory_bytes": 4311048192,
+      "launch_seconds": 0.9331043380079791,
+      "physical_memory_bytes": 4311048192,
+      "prepare_seconds": 0.0,
+      "provider": "podman",
+      "repetition": 1,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 76.332,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 630.15
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 60.649,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 582.149
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 86.649,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 331.743
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 60.474,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 294.019
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 114.702,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 426.116
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 134.5,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 275.142
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 95.324,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 299.104
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 91.775,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 293.199
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 97.201,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 469.655
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 83.631,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 484.933
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 36.889,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 252.9
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 107.655,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 285.779
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 92.081,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 525.734
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 89.426,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 360.167
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 56.048,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 265.137
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 106.108,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 302.116
+        }
+      ],
+      "source_physical_memory_bytes": null,
+      "wave_seconds": 1.5362794210086577,
+      "work_ms": [
+        630.15,
+        582.149,
+        331.743,
+        294.019,
+        426.116,
+        275.142,
+        299.104,
+        293.199,
+        469.655,
+        484.933,
+        252.9,
+        285.779,
+        525.734,
+        360.167,
+        265.137,
+        302.116
+      ]
+    },
+    {
+      "capture_window_ms": null,
+      "idle_source_cpu_percent": null,
+      "incremental_children_memory_bytes": 4287275008,
+      "launch_seconds": 0.7590564080164768,
+      "physical_memory_bytes": 4287275008,
+      "prepare_seconds": 0.0,
+      "provider": "podman",
+      "repetition": 2,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 52.896,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 583.704
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 78.546,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 579.115
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 42.75,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 265.549
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 51.339,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 277.062
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 108.865,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 307.328
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 76.761,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 277.915
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 61.631,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 502.513
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 56.738,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 408.374
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 96.958,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 450.383
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 62.124,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 494.42
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 117.383,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 329.569
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 82.72,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 442.791
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 94.208,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 371.155
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 108.588,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 452.928
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 83.776,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 276.338
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 60.933,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 280.583
+        }
+      ],
+      "source_physical_memory_bytes": null,
+      "wave_seconds": 1.5125366020365618,
+      "work_ms": [
+        583.704,
+        579.115,
+        265.549,
+        277.062,
+        307.328,
+        277.915,
+        502.513,
+        408.374,
+        450.383,
+        494.42,
+        329.569,
+        442.791,
+        371.155,
+        452.928,
+        276.338,
+        280.583
+      ]
+    },
+    {
+      "capture_window_ms": 36.0,
+      "idle_source_cpu_percent": 0.0,
+      "incremental_children_memory_bytes": 210632704,
+      "launch_seconds": 1.0139848550315946,
+      "physical_memory_bytes": 724885504,
+      "prepare_seconds": 1.9583837400423363,
+      "provider": "smol-branch",
+      "repetition": 2,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 561.572
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 547.661
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 513.039
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 549.863
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 544.702
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 558.563
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 559.788
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 556.705
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 555.528
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 458.806
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 273.714
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 539.435
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 432.081
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 542.942
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 549.141
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 154.269,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 504.311
+        }
+      ],
+      "source_physical_memory_bytes": 514252800,
+      "wave_seconds": 1.418093521031551,
+      "work_ms": [
+        561.572,
+        547.661,
+        513.039,
+        549.863,
+        544.702,
+        558.563,
+        559.788,
+        556.705,
+        555.528,
+        458.806,
+        273.714,
+        539.435,
+        432.081,
+        542.942,
+        549.141,
+        504.311
+      ]
+    },
+    {
+      "capture_window_ms": 37.0,
+      "idle_source_cpu_percent": 0.0,
+      "incremental_children_memory_bytes": 153550848,
+      "launch_seconds": 1.088810392015148,
+      "physical_memory_bytes": 582914048,
+      "prepare_seconds": 1.9534359590034,
+      "provider": "smol-branch",
+      "repetition": 3,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 548.092
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 572.339
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 325.566
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 512.568
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 438.144
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 439.877
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 547.979
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 549.881
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 546.374
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 431.061
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 570.737
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 470.675
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 528.27
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 271.777
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 560.983
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 157.869,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 529.48
+        }
+      ],
+      "source_physical_memory_bytes": 429363200,
+      "wave_seconds": 1.440330907003954,
+      "work_ms": [
+        548.092,
+        572.339,
+        325.566,
+        512.568,
+        438.144,
+        439.877,
+        547.979,
+        549.881,
+        546.374,
+        431.061,
+        570.737,
+        470.675,
+        528.27,
+        271.777,
+        560.983,
+        529.48
+      ]
+    },
+    {
+      "capture_window_ms": null,
+      "idle_source_cpu_percent": null,
+      "incremental_children_memory_bytes": 4298203136,
+      "launch_seconds": 0.8211502759950235,
+      "physical_memory_bytes": 4298203136,
+      "prepare_seconds": 0.0,
+      "provider": "podman",
+      "repetition": 3,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 56.853,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 296.383
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 126.265,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 340.631
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 69.793,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 278.988
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 75.744,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 565.49
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 74.821,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 266.6
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 79.821,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 393.104
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 100.42,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 298.231
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 63.136,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 252.455
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 74.484,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 266.89
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 127.945,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 305.244
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 63.934,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 309.305
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 123.104,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 447.605
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 49.0,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 347.476
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 124.11,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 300.984
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 43.144,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 293.699
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 61.273,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 443.212
+        }
+      ],
+      "source_physical_memory_bytes": null,
+      "wave_seconds": 1.5245206580148079,
+      "work_ms": [
+        296.383,
+        340.631,
+        278.988,
+        565.49,
+        266.6,
+        393.104,
+        298.231,
+        252.455,
+        266.89,
+        305.244,
+        309.305,
+        447.605,
+        347.476,
+        300.984,
+        293.699,
+        443.212
+      ]
+    },
+    {
+      "capture_window_ms": null,
+      "idle_source_cpu_percent": null,
+      "incremental_children_memory_bytes": 4276699136,
+      "launch_seconds": 0.646907209942583,
+      "physical_memory_bytes": 4276699136,
+      "prepare_seconds": 0.0,
+      "provider": "podman",
+      "repetition": 4,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 101.235,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 518.286
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 71.054,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 638.036
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 166.41,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 471.105
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 74.638,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 303.189
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 190.198,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 463.755
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 88.669,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 343.198
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 55.141,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 480.986
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 45.317,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 297.172
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 125.456,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 506.169
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 90.239,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 362.435
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 59.834,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 526.87
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 104.281,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 282.021
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 83.453,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 389.383
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 91.89,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 624.823
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 86.54,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 621.906
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 113.379,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 316.526
+        }
+      ],
+      "source_physical_memory_bytes": null,
+      "wave_seconds": 1.5008698589517735,
+      "work_ms": [
+        518.286,
+        638.036,
+        471.105,
+        303.189,
+        463.755,
+        343.198,
+        480.986,
+        297.172,
+        506.169,
+        362.435,
+        526.87,
+        282.021,
+        389.383,
+        624.823,
+        621.906,
+        316.526
+      ]
+    },
+    {
+      "capture_window_ms": 36.0,
+      "idle_source_cpu_percent": 0.4999059017162726,
+      "incremental_children_memory_bytes": 209489920,
+      "launch_seconds": 0.9867417479981668,
+      "physical_memory_bytes": 701988864,
+      "prepare_seconds": 1.9718477010028437,
+      "provider": "smol-branch",
+      "repetition": 4,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 439.799
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 271.249
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 543.301
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 524.651
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 547.731
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 525.899
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 509.66
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 542.428
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 540.968
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 531.843
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 541.874
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 541.448
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 512.552
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 585.236
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 532.245
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 159.602,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 588.387
+        }
+      ],
+      "source_physical_memory_bytes": 492498944,
+      "wave_seconds": 1.4387005039607175,
+      "work_ms": [
+        439.799,
+        271.249,
+        543.301,
+        524.651,
+        547.731,
+        525.899,
+        509.66,
+        542.428,
+        540.968,
+        531.843,
+        541.874,
+        541.448,
+        512.552,
+        585.236,
+        532.245,
+        588.387
+      ]
+    },
+    {
+      "capture_window_ms": 36.0,
+      "idle_source_cpu_percent": 0.0,
+      "incremental_children_memory_bytes": 166899712,
+      "launch_seconds": 1.140400668955408,
+      "physical_memory_bytes": 672964608,
+      "prepare_seconds": 2.0317497049691156,
+      "provider": "smol-branch",
+      "repetition": 5,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 515.454
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 591.544
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 452.704
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 463.056
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 536.008
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 270.037
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 556.587
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 450.926
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 439.041
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 511.136
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 533.05
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 422.198
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 419.943
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 612.168
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 563.429
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 161.415,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 514.789
+        }
+      ],
+      "source_physical_memory_bytes": 506064896,
+      "wave_seconds": 1.4944563679746352,
+      "work_ms": [
+        515.454,
+        591.544,
+        452.704,
+        463.056,
+        536.008,
+        270.037,
+        556.587,
+        450.926,
+        439.041,
+        511.136,
+        533.05,
+        422.198,
+        419.943,
+        612.168,
+        563.429,
+        514.789
+      ]
+    },
+    {
+      "capture_window_ms": null,
+      "idle_source_cpu_percent": null,
+      "incremental_children_memory_bytes": 4299350016,
+      "launch_seconds": 0.7786575559875928,
+      "physical_memory_bytes": 4299350016,
+      "prepare_seconds": 0.0,
+      "provider": "podman",
+      "repetition": 5,
+      "results": [
+        {
+          "checksum": 1360687676565013824,
+          "digest": "98ce5a9a97afd28f3d31375e8ec87dbdbad7ccee7a2d48dd80d534d8de831ee3",
+          "init_ms": 159.654,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 0,
+          "work_ms": 275.082
+        },
+        {
+          "checksum": 16650897123279344192,
+          "digest": "1a1fed2bbd66199881570c07fc23bcb26cc747a987c51ccfc764be13c73da1e1",
+          "init_ms": 52.382,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 1,
+          "work_ms": 285.386
+        },
+        {
+          "checksum": 6688829554031904576,
+          "digest": "d443651a67c911f37ca89aa15bc4ad8256f04d3d10274f188a04640734f6fae0",
+          "init_ms": 118.189,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 10,
+          "work_ms": 376.241
+        },
+        {
+          "checksum": 3532294927036683328,
+          "digest": "d8e7ff4718efe4b35781a07f965800825e5c2a00e781f12abb4e3a0ea786360b",
+          "init_ms": 41.993,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 11,
+          "work_ms": 304.683
+        },
+        {
+          "checksum": 375760300041462080,
+          "digest": "2be775dadc8c905720ccd9f3066798fb43452a7d67670f7be0f87bcafdc505cb",
+          "init_ms": 169.967,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 12,
+          "work_ms": 302.807
+        },
+        {
+          "checksum": 12509435119760571200,
+          "digest": "a9d077003d3c35c4c9cdad4b6f224ae5dcfa1674aa291031e15b0a85c375de6e",
+          "init_ms": 54.293,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 13,
+          "work_ms": 281.173
+        },
+        {
+          "checksum": 9352900492765349952,
+          "digest": "f77a8d32101d6c6f74a42a1023d7135d24f805dc2899de482109c7c00d66a6c7",
+          "init_ms": 67.154,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 14,
+          "work_ms": 371.8
+        },
+        {
+          "checksum": 6196365865770128704,
+          "digest": "b1a656f88ba3905fc8c5f72e719a9c69854d24c8cd4d02128864bce5a0ce4d2e",
+          "init_ms": 149.163,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 15,
+          "work_ms": 268.871
+        },
+        {
+          "checksum": 13494362496284122944,
+          "digest": "b89acacbc1645df8b01a1663b8ae9b2f875c1abbfb8c66c17a76114e52d84e0c",
+          "init_ms": 60.644,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 2,
+          "work_ms": 713.936
+        },
+        {
+          "checksum": 10337827869288901696,
+          "digest": "527841c4f72f0a1460ae38a43bfd0c452560ba7dd13deb4d17691024a873f8e5",
+          "init_ms": 119.197,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 3,
+          "work_ms": 268.2
+        },
+        {
+          "checksum": 7181293242293680448,
+          "digest": "d366aa5fa401f20625451c8a1693dc75fed2f0d19b1e81f5587dfc98920371bc",
+          "init_ms": 77.982,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 4,
+          "work_ms": 515.039
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "39872a4bc09efad696138d2a2ee384b23efb1ef7a350ff0fd0b41802624c3b20",
+          "init_ms": 98.213,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 5,
+          "work_ms": 271.102
+        },
+        {
+          "checksum": 4024758615298459200,
+          "digest": "bb5a19ccefee8569f0925ae51013e9e498a58c1f670231a0ef5e7474974ab5b0",
+          "init_ms": 74.568,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 6,
+          "work_ms": 287.082
+        },
+        {
+          "checksum": 16158433435017568320,
+          "digest": "307edefc1aaf24e99120ab86e5c6869c50e53e3e9159643c23e297d9a4601096",
+          "init_ms": 100.101,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 7,
+          "work_ms": 269.868
+        },
+        {
+          "checksum": 13001898808022347072,
+          "digest": "9787a1a7fb44b9fa93584e83cd3aa43c944d6e52bb025d98937ca1a68bfe5ded",
+          "init_ms": 52.534,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 8,
+          "work_ms": 603.149
+        },
+        {
+          "checksum": 9845364181027125824,
+          "digest": "20429fce09ca7724d5fec56649f2e59467d1e0885942f0e40aa8c6e6123a763c",
+          "init_ms": 160.295,
+          "pid": 1,
+          "state_mib": 256,
+          "task_id": 9,
+          "work_ms": 314.177
+        }
+      ],
+      "source_physical_memory_bytes": null,
+      "wave_seconds": 1.432026238006074,
+      "work_ms": [
+        275.082,
+        285.386,
+        376.241,
+        304.683,
+        302.807,
+        281.173,
+        371.8,
+        268.871,
+        713.936,
+        268.2,
+        515.039,
+        271.102,
+        287.082,
+        269.868,
+        603.149,
+        314.177
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "software": {
+    "container_runtime": "podman version 6.1.0",
+    "image_prepare_seconds": 0.823607763973996,
+    "smolvm": "smolvm 1.13.1",
+    "smolvm_revision": "78e5250fce6aa2f16a6d8ce8f3e33c9ad970e6f1"
+  },
+  "summary": {
+    "comparisons": {
+      "container_to_smol_incremental_worker_memory_ratio": 21.615910682651506,
+      "container_to_smol_physical_memory_ratio": 6.122893619007608,
+      "container_to_smol_wave_speed_ratio": 1.0501313237683718
+    },
+    "points": [
+      {
+        "median_capture_window_ms": null,
+        "median_idle_source_cpu_percent": null,
+        "median_incremental_memory_per_worker_bytes": 268637696.0,
+        "median_launch_seconds": 0.7786575559875928,
+        "median_physical_memory_bytes": 4298203136.0,
+        "median_prepare_seconds": 0.0,
+        "median_wave_seconds": 1.5125366020365618,
+        "median_work_ms": 316.92949999999996,
+        "provider": "podman",
+        "repetitions": 5
+      },
+      {
+        "median_capture_window_ms": 36.0,
+        "median_idle_source_cpu_percent": 0.0,
+        "median_incremental_memory_per_worker_bytes": 12427776.0,
+        "median_launch_seconds": 1.088810392015148,
+        "median_physical_memory_bytes": 701988864.0,
+        "median_prepare_seconds": 1.9718477010028437,
+        "median_wave_seconds": 1.440330907003954,
+        "median_work_ms": 528.875,
+        "provider": "smol-branch",
+        "repetitions": 5
+      }
+    ]
+  },
+  "validated_at": "2026-09-05T21:38:10.446194+00:00",
+  "workload": {
+    "description": "Python hashing, compression, JSON, and regex over initialized immutable state",
+    "identity_sha256": "0e04a2eff52a14ae6dfa47586f76348d26874e0be5d6e728bd714dae8c0dec7a"
+  }
+}

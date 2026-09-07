@@ -1,0 +1,5 @@
+FROM docker.io/library/python:3.12-slim
+
+COPY cpu_parity_worker.py /opt/cpu-parity-worker.py
+
+ENTRYPOINT ["python3", "/opt/cpu-parity-worker.py"]

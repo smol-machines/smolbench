@@ -1,0 +1,503 @@
+[
+  {
+    "repetition": 1,
+    "provider": "smol-branch",
+    "dataset": "aider/aider-polyglot",
+    "task": "polyglot_python_simple-linked-list",
+    "task_tree_sha256": "dd18e558e76a22619d6576dc9f68aa1341635b828b5d254fe5d5fa6d2c9d377e",
+    "workload_image": {
+      "tag": "smol-bench/harbor-polyglot-python-simple-linked-list:50bb7d6b9de0592a",
+      "id": "sha256:9a4579d6296eeae41c5dca1b8f7fb158a938a2fa38dcc93f1197143073c424ac"
+    },
+    "attempts": 16,
+    "concurrency": 16,
+    "agent": "oracle",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 23.603474871255457,
+    "return_code": 0,
+    "wall_seconds": 12.96183559903875,
+    "harbor_seconds": 10.388311,
+    "completed": 16,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.694352,
+      "p50": 5.9442509999999995,
+      "p95": 5.975362,
+      "p99": 5.975362,
+      "max": 5.975362
+    },
+    "agent_execution_seconds": {
+      "min": 0.223841,
+      "p50": 0.323811,
+      "p95": 0.33992,
+      "p99": 0.33992,
+      "max": 0.33992
+    },
+    "verifier_seconds": {
+      "min": 2.854907,
+      "p50": 3.468369,
+      "p95": 3.581489,
+      "p99": 3.581489,
+      "max": 3.581489
+    },
+    "approximate_peak_host_memory_bytes": 8122605568,
+    "result_path": "results/raw/aider-final-n16/20260905-180824-r1-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1",
+      "smol_sdk_revision": "3e93b36f0c2018cd2377b8432fe41194a67d8785",
+      "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+      "docker_server": "28.3.1"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "docker_image_build_seconds": 0.0,
+      "docker_image_export_seconds": 0.0,
+      "machine_create_seconds": 23.603474341332912,
+      "prepare_script_seconds": 5.299225449562073e-07
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 1,
+    "provider": "docker",
+    "dataset": "aider/aider-polyglot",
+    "task": "polyglot_python_simple-linked-list",
+    "task_tree_sha256": "dd18e558e76a22619d6576dc9f68aa1341635b828b5d254fe5d5fa6d2c9d377e",
+    "workload_image": {
+      "tag": "smol-bench/harbor-polyglot-python-simple-linked-list:50bb7d6b9de0592a",
+      "id": "sha256:9a4579d6296eeae41c5dca1b8f7fb158a938a2fa38dcc93f1197143073c424ac"
+    },
+    "attempts": 16,
+    "concurrency": 16,
+    "agent": "oracle",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 20.010330450255424,
+    "harbor_seconds": 17.41193,
+    "completed": 16,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.079376,
+      "p50": 1.2302415,
+      "p95": 1.373712,
+      "p99": 1.373712,
+      "max": 1.373712
+    },
+    "agent_execution_seconds": {
+      "min": 0.269233,
+      "p50": 0.3233145,
+      "p95": 0.341565,
+      "p99": 0.341565,
+      "max": 0.341565
+    },
+    "verifier_seconds": {
+      "min": 1.924894,
+      "p50": 2.025203,
+      "p95": 2.228792,
+      "p99": 2.228792,
+      "max": 2.228792
+    },
+    "approximate_peak_host_memory_bytes": 613842944,
+    "result_path": "results/raw/aider-final-n16/20260905-180824-r1-docker/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1",
+      "smol_sdk_revision": "3e93b36f0c2018cd2377b8432fe41194a67d8785",
+      "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+      "docker_server": "28.3.1"
+    },
+    "provider_prepare_seconds": 0.0,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  },
+  {
+    "repetition": 2,
+    "provider": "docker",
+    "dataset": "aider/aider-polyglot",
+    "task": "polyglot_python_simple-linked-list",
+    "task_tree_sha256": "dd18e558e76a22619d6576dc9f68aa1341635b828b5d254fe5d5fa6d2c9d377e",
+    "workload_image": {
+      "tag": "smol-bench/harbor-polyglot-python-simple-linked-list:50bb7d6b9de0592a",
+      "id": "sha256:9a4579d6296eeae41c5dca1b8f7fb158a938a2fa38dcc93f1197143073c424ac"
+    },
+    "attempts": 16,
+    "concurrency": 16,
+    "agent": "oracle",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 19.885793670080602,
+    "harbor_seconds": 17.267766,
+    "completed": 16,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.088724,
+      "p50": 1.1938705,
+      "p95": 1.335852,
+      "p99": 1.335852,
+      "max": 1.335852
+    },
+    "agent_execution_seconds": {
+      "min": 0.247402,
+      "p50": 0.325159,
+      "p95": 0.353391,
+      "p99": 0.353391,
+      "max": 0.353391
+    },
+    "verifier_seconds": {
+      "min": 1.856999,
+      "p50": 2.02779,
+      "p95": 2.204987,
+      "p99": 2.204987,
+      "max": 2.204987
+    },
+    "approximate_peak_host_memory_bytes": 1190133760,
+    "result_path": "results/raw/aider-final-n16/20260905-180824-r2-docker/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1",
+      "smol_sdk_revision": "3e93b36f0c2018cd2377b8432fe41194a67d8785",
+      "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+      "docker_server": "28.3.1"
+    },
+    "provider_prepare_seconds": 0.0,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  },
+  {
+    "repetition": 2,
+    "provider": "smol-branch",
+    "dataset": "aider/aider-polyglot",
+    "task": "polyglot_python_simple-linked-list",
+    "task_tree_sha256": "dd18e558e76a22619d6576dc9f68aa1341635b828b5d254fe5d5fa6d2c9d377e",
+    "workload_image": {
+      "tag": "smol-bench/harbor-polyglot-python-simple-linked-list:50bb7d6b9de0592a",
+      "id": "sha256:9a4579d6296eeae41c5dca1b8f7fb158a938a2fa38dcc93f1197143073c424ac"
+    },
+    "attempts": 16,
+    "concurrency": 16,
+    "agent": "oracle",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 23.603474871255457,
+    "return_code": 0,
+    "wall_seconds": 12.681769446004182,
+    "harbor_seconds": 10.158743,
+    "completed": 16,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 2.551946,
+      "p50": 5.509805500000001,
+      "p95": 5.548391,
+      "p99": 5.548391,
+      "max": 5.548391
+    },
+    "agent_execution_seconds": {
+      "min": 0.215714,
+      "p50": 0.309444,
+      "p95": 0.35407,
+      "p99": 0.35407,
+      "max": 0.35407
+    },
+    "verifier_seconds": {
+      "min": 3.304831,
+      "p50": 3.6685470000000002,
+      "p95": 3.725037,
+      "p99": 3.725037,
+      "max": 3.725037
+    },
+    "approximate_peak_host_memory_bytes": 4014157824,
+    "result_path": "results/raw/aider-final-n16/20260905-180824-r2-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1",
+      "smol_sdk_revision": "3e93b36f0c2018cd2377b8432fe41194a67d8785",
+      "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+      "docker_server": "28.3.1"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "docker_image_build_seconds": 0.0,
+      "docker_image_export_seconds": 0.0,
+      "machine_create_seconds": 23.603474341332912,
+      "prepare_script_seconds": 5.299225449562073e-07
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 3,
+    "provider": "smol-branch",
+    "dataset": "aider/aider-polyglot",
+    "task": "polyglot_python_simple-linked-list",
+    "task_tree_sha256": "dd18e558e76a22619d6576dc9f68aa1341635b828b5d254fe5d5fa6d2c9d377e",
+    "workload_image": {
+      "tag": "smol-bench/harbor-polyglot-python-simple-linked-list:50bb7d6b9de0592a",
+      "id": "sha256:9a4579d6296eeae41c5dca1b8f7fb158a938a2fa38dcc93f1197143073c424ac"
+    },
+    "attempts": 16,
+    "concurrency": 16,
+    "agent": "oracle",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 23.603474871255457,
+    "return_code": 0,
+    "wall_seconds": 12.899682994000614,
+    "harbor_seconds": 10.268419,
+    "completed": 16,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 2.648618,
+      "p50": 5.6778984999999995,
+      "p95": 5.689172,
+      "p99": 5.689172,
+      "max": 5.689172
+    },
+    "agent_execution_seconds": {
+      "min": 0.227537,
+      "p50": 0.3145365,
+      "p95": 0.359228,
+      "p99": 0.359228,
+      "max": 0.359228
+    },
+    "verifier_seconds": {
+      "min": 3.451336,
+      "p50": 3.612256,
+      "p95": 3.765053,
+      "p99": 3.765053,
+      "max": 3.765053
+    },
+    "approximate_peak_host_memory_bytes": 3892011008,
+    "result_path": "results/raw/aider-final-n16/20260905-180824-r3-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1",
+      "smol_sdk_revision": "3e93b36f0c2018cd2377b8432fe41194a67d8785",
+      "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+      "docker_server": "28.3.1"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "docker_image_build_seconds": 0.0,
+      "docker_image_export_seconds": 0.0,
+      "machine_create_seconds": 23.603474341332912,
+      "prepare_script_seconds": 5.299225449562073e-07
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 3,
+    "provider": "docker",
+    "dataset": "aider/aider-polyglot",
+    "task": "polyglot_python_simple-linked-list",
+    "task_tree_sha256": "dd18e558e76a22619d6576dc9f68aa1341635b828b5d254fe5d5fa6d2c9d377e",
+    "workload_image": {
+      "tag": "smol-bench/harbor-polyglot-python-simple-linked-list:50bb7d6b9de0592a",
+      "id": "sha256:9a4579d6296eeae41c5dca1b8f7fb158a938a2fa38dcc93f1197143073c424ac"
+    },
+    "attempts": 16,
+    "concurrency": 16,
+    "agent": "oracle",
+    "model": null,
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 19.92776557430625,
+    "harbor_seconds": 17.347274,
+    "completed": 16,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.063129,
+      "p50": 1.21465,
+      "p95": 1.360037,
+      "p99": 1.360037,
+      "max": 1.360037
+    },
+    "agent_execution_seconds": {
+      "min": 0.252195,
+      "p50": 0.323652,
+      "p95": 0.349816,
+      "p99": 0.349816,
+      "max": 0.349816
+    },
+    "verifier_seconds": {
+      "min": 1.856305,
+      "p50": 2.026998,
+      "p95": 2.297385,
+      "p99": 2.297385,
+      "max": 2.297385
+    },
+    "approximate_peak_host_memory_bytes": 838537216,
+    "result_path": "results/raw/aider-final-n16/20260905-180824-r3-docker/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1",
+      "smol_sdk_revision": "3e93b36f0c2018cd2377b8432fe41194a67d8785",
+      "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+      "docker_server": "28.3.1"
+    },
+    "provider_prepare_seconds": 0.0,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  }
+]

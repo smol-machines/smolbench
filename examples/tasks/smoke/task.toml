@@ -1,0 +1,13 @@
+version = "1.0"
+
+[metadata]
+
+[environment]
+docker_image = "alpine:latest"
+build_timeout_sec = 600.0
+
+[agent]
+timeout_sec = 300.0
+
+[verifier]
+timeout_sec = 300.0

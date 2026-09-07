@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smol branch scale validation</title>
+<style>
+:root { color-scheme:light dark; font-family:ui-sans-serif,system-ui,sans-serif; --accent:#ff5c35; --panel:color-mix(in srgb,Canvas 94%,CanvasText 6%); }
+body { margin:0 auto; max-width:1120px; padding:48px 24px 80px; background:Canvas; color:CanvasText; }
+h1 { font-size:clamp(2.2rem,7vw,5rem); letter-spacing:-.055em; line-height:.95; margin:0 0 18px; }
+h2 { margin-top:48px; } p,li { line-height:1.55; } .lede,.meta,.note { color:color-mix(in srgb,CanvasText 68%,Canvas 32%); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin:28px 0; }
+.card { background:var(--panel); border:1px solid color-mix(in srgb,CanvasText 15%,Canvas 85%); border-radius:14px; padding:20px; }
+.card strong { color:var(--accent); display:block; font-size:2.3rem; } .card span { font-size:.9rem; }
+.bar-row { display:grid; grid-template-columns:64px 1fr 180px; gap:12px; align-items:center; margin:13px 0; } .bar-row em { font-size:.82rem; }
+.track { height:22px; background:var(--panel); border-radius:6px; overflow:hidden; } .track span { display:block; height:100%; background:var(--accent); }
+.table-wrap { overflow-x:auto; } table { border-collapse:collapse; width:100%; } th,td { border-bottom:1px solid color-mix(in srgb,CanvasText 16%,Canvas 84%); padding:11px 9px; text-align:right; white-space:nowrap; } th:first-child { text-align:left; } thead th { font-size:.73rem; text-transform:uppercase; }
+@media(max-width:650px) { .bar-row { grid-template-columns:54px 1fr; } .bar-row em { grid-column:2; } }
+</style></head><body>
+<h1>64-way soak.<br>Zero failed environments.</h1>
+<p class="lede">One running Smol machine fanned out into clean Harbor eval environments on a 26-vCPU host. Repeated soaks passed through N=64; a larger N=128 probe passed but did not survive repeated qualification.</p>
+<p class="meta">terminal-bench-sample@2.0/regex-log · SmolVM 8a571dce742a · 496/496 Smol environments completed</p>
+
+        <div class="cards">
+          <div class="card"><strong>3.32×</strong><span>faster N=16 full lifecycle than Harbor Docker</span></div>
+          <div class="card"><strong>5.82×</strong><span>faster N=16 Harbor job than Docker</span></div>
+          <div class="card"><strong>1.90×</strong><span>faster Docker environment setup</span></div>
+        </div>
+<h2>Fan-out curve</h2>
+<p class="note">Median Harbor lifecycle time; shorter is better. Each wave creates, readies and cleans up every environment.</p>
+<div class='bar-row'><b>N=16</b><div class='track'><span style='width:12.8%'></span></div><em>2.48s · 5-wave soak</em></div><div class='bar-row'><b>N=32</b><div class='track'><span style='width:25.6%'></span></div><em>4.97s · 3-wave soak</em></div><div class='bar-row'><b>N=64</b><div class='track'><span style='width:51.8%'></span></div><em>10.07s · 3-wave soak</em></div><div class='bar-row'><b>N=128</b><div class='track'><span style='width:100.0%'></span></div><em>19.42s · single probe</em></div>
+<h2>Measured results</h2>
+<div class="table-wrap"><table><thead><tr><th>Provider</th><th>Fan-out</th><th>Waves</th><th>Completed</th><th>Full wall</th><th>Harbor job</th><th>Setup p50</th><th>Setup p99</th><th>Completed/s</th><th>Observed memory delta</th></tr></thead><tbody><tr><th>smol-branch</th><td>16</td><td>5</td><td>80/80</td><td>5.14s</td><td>2.48s</td><td>2.26s</td><td>2.28s</td><td>6.45</td><td>276 MiB</td></tr><tr><th>docker</th><td>16</td><td>5</td><td>80/80</td><td>17.07s</td><td>14.43s</td><td>1.19s</td><td>1.32s</td><td>1.11</td><td>697 MiB</td></tr><tr><th>smol-branch</th><td>32</td><td>3</td><td>96/96</td><td>7.51s</td><td>4.97s</td><td>4.55s</td><td>4.75s</td><td>6.44</td><td>558 MiB</td></tr><tr><th>smol-branch</th><td>64</td><td>3</td><td>192/192</td><td>12.64s</td><td>10.07s</td><td>5.87s</td><td>9.73s</td><td>6.36</td><td>888 MiB</td></tr><tr><th>smol-branch</th><td>128</td><td>1</td><td>128/128</td><td>21.97s</td><td>19.42s</td><td>10.26s</td><td>18.83s</td><td>6.59</td><td>831 MiB</td></tr></tbody></table></div>
+
+<h2>Failed qualification retained</h2>
+<p class="note">A failed soak is never folded into the successful curve or hidden. On this host the failed N=128 wave hit the upstream KVM first-run ENOMEM defect after the runtime's bounded retry; all temporary machines were cleaned up.</p>
+<div class="table-wrap"><table><thead><tr><th>Provider</th><th>Fan-out</th><th>Failed waves</th><th>Completed</th><th>Errors</th></tr></thead><tbody><tr><th>smol-branch</th><td>128</td><td>1/3</td><td>352/384</td><td>32</td></tr></tbody></table></div>
+<ul class="note"><li>N=16, N=32, and N=64 are repeated soaks; N=128 is a single boundary probe when its repetition count is one.</li><li>A separate repeated N=128 qualification failed and is reported below; the successful single probe is not a production reliability claim.</li><li>Harbor job and wall measurements include creation, readiness, and cleanup; environment setup measures readiness only.</li><li>MemAvailable deltas are noisy process-external observations, not per-VM RSS or a physical COW accounting measurement.</li></ul>
+</body></html>

@@ -1,0 +1,371 @@
+[
+  {
+    "repetition": 1,
+    "provider": "smol-branch",
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "oracle",
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 19.46508796606213,
+    "return_code": 0,
+    "wall_seconds": 11.749024965334684,
+    "harbor_seconds": 9.209496,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 0.789895,
+      "p50": 0.7975615,
+      "p95": 0.799499,
+      "p99": 0.799499,
+      "max": 0.799499
+    },
+    "agent_execution_seconds": {
+      "min": 0.167968,
+      "p50": 0.168392,
+      "p95": 0.17145,
+      "p99": 0.17145,
+      "max": 0.17145
+    },
+    "verifier_seconds": {
+      "min": 6.907656,
+      "p50": 7.5081745,
+      "p95": 7.800197,
+      "p99": 7.800197,
+      "max": 7.800197
+    },
+    "approximate_peak_host_memory_bytes": 1341861888,
+    "result_path": "results/raw/20260905-133319-r1-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "machine_create_seconds": 5.248630599118769,
+      "prepare_script_seconds": 14.21645736694336
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 1,
+    "provider": "docker",
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "oracle",
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 19.72383255790919,
+    "harbor_seconds": 17.017704,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 0.977031,
+      "p50": 0.99232,
+      "p95": 1.023879,
+      "p99": 1.023879,
+      "max": 1.023879
+    },
+    "agent_execution_seconds": {
+      "min": 0.249684,
+      "p50": 0.26614550000000003,
+      "p95": 0.267058,
+      "p99": 0.267058,
+      "max": 0.267058
+    },
+    "verifier_seconds": {
+      "min": 3.908787,
+      "p50": 4.253612,
+      "p95": 4.561497,
+      "p99": 4.561497,
+      "max": 4.561497
+    },
+    "approximate_peak_host_memory_bytes": 467984384,
+    "result_path": "results/raw/20260905-133319-r1-docker/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "provider_prepare_seconds": 0.0,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  },
+  {
+    "repetition": 2,
+    "provider": "docker",
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "oracle",
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 19.901893575210124,
+    "harbor_seconds": 17.241313,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 0.974895,
+      "p50": 0.999042,
+      "p95": 1.028231,
+      "p99": 1.028231,
+      "max": 1.028231
+    },
+    "agent_execution_seconds": {
+      "min": 0.245684,
+      "p50": 0.2517285,
+      "p95": 0.255439,
+      "p99": 0.255439,
+      "max": 0.255439
+    },
+    "verifier_seconds": {
+      "min": 4.309088,
+      "p50": 4.361428500000001,
+      "p95": 4.471723,
+      "p99": 4.471723,
+      "max": 4.471723
+    },
+    "approximate_peak_host_memory_bytes": 604733440,
+    "result_path": "results/raw/20260905-133319-r2-docker/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "provider_prepare_seconds": 0.0,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  },
+  {
+    "repetition": 2,
+    "provider": "smol-branch",
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "oracle",
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 19.46508796606213,
+    "return_code": 0,
+    "wall_seconds": 13.89130930788815,
+    "harbor_seconds": 11.381381,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 1.45988,
+      "p50": 1.4647415000000001,
+      "p95": 1.470198,
+      "p99": 1.470198,
+      "max": 1.470198
+    },
+    "agent_execution_seconds": {
+      "min": 0.160325,
+      "p50": 0.16244999999999998,
+      "p95": 0.164463,
+      "p99": 0.164463,
+      "max": 0.164463
+    },
+    "verifier_seconds": {
+      "min": 7.145239,
+      "p50": 7.4406105,
+      "p95": 9.333303,
+      "p99": 9.333303,
+      "max": 9.333303
+    },
+    "approximate_peak_host_memory_bytes": 1115725824,
+    "result_path": "results/raw/20260905-133319-r2-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "machine_create_seconds": 5.248630599118769,
+      "prepare_script_seconds": 14.21645736694336
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 3,
+    "provider": "smol-branch",
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "oracle",
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": 19.46508796606213,
+    "return_code": 0,
+    "wall_seconds": 11.143962766043842,
+    "harbor_seconds": 8.608869,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 0.540077,
+      "p50": 0.545472,
+      "p95": 0.550958,
+      "p99": 0.550958,
+      "max": 0.550958
+    },
+    "agent_execution_seconds": {
+      "min": 0.158977,
+      "p50": 0.16945500000000002,
+      "p95": 0.17272,
+      "p99": 0.17272,
+      "max": 0.17272
+    },
+    "verifier_seconds": {
+      "min": 7.040897,
+      "p50": 7.1231325000000005,
+      "p95": 7.457462,
+      "p99": 7.457462,
+      "max": 7.457462
+    },
+    "approximate_peak_host_memory_bytes": 1060716544,
+    "result_path": "results/raw/20260905-133319-r3-smol-branch/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "provider_prepare_seconds": null,
+    "provider_prepare_built": null,
+    "checkpoint_prepare_phases": {
+      "machine_create_seconds": 5.248630599118769,
+      "prepare_script_seconds": 14.21645736694336
+    },
+    "correctness_error": null
+  },
+  {
+    "repetition": 3,
+    "provider": "docker",
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "attempts": 4,
+    "concurrency": 4,
+    "agent": "oracle",
+    "install_only": false,
+    "checkpoint_mode": "prepared",
+    "checkpoint_prepare_seconds": null,
+    "return_code": 0,
+    "wall_seconds": 19.53520140564069,
+    "harbor_seconds": 16.901116,
+    "completed": 4,
+    "errors": 0,
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "environment_setup_seconds": {
+      "min": 0.974698,
+      "p50": 0.9955275,
+      "p95": 0.998918,
+      "p99": 0.998918,
+      "max": 0.998918
+    },
+    "agent_execution_seconds": {
+      "min": 0.219028,
+      "p50": 0.231285,
+      "p95": 0.242089,
+      "p99": 0.242089,
+      "max": 0.242089
+    },
+    "verifier_seconds": {
+      "min": 3.950102,
+      "p50": 4.218961999999999,
+      "p95": 4.305729,
+      "p99": 4.305729,
+      "max": 4.305729
+    },
+    "approximate_peak_host_memory_bytes": 521695232,
+    "result_path": "results/raw/20260905-133319-r3-docker/result.json",
+    "host": {
+      "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+      "machine": "x86_64",
+      "logical_cpus": 26
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "provider_prepare_seconds": 0.0,
+    "provider_prepare_built": false,
+    "checkpoint_prepare_phases": null,
+    "correctness_error": null
+  }
+]

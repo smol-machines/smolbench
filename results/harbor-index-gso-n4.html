@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smol branching eval benchmark</title>
+<style>
+:root { color-scheme: light dark; font-family: ui-sans-serif, system-ui, sans-serif; --accent:#ff5c35; --panel:color-mix(in srgb, Canvas 94%, CanvasText 6%); }
+body { margin:0 auto; max-width:1120px; padding:48px 24px 80px; background:Canvas; color:CanvasText; }
+h1 { font-size:clamp(2rem,6vw,4.5rem); letter-spacing:-.05em; margin:0 0 12px; }
+h2 { font-size:2rem; margin:56px 0 8px; }
+p { line-height:1.55; } .lede,.meta,.note { color:color-mix(in srgb, CanvasText 68%, Canvas 32%); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:24px 0; }
+.card { background:var(--panel); border:1px solid color-mix(in srgb, CanvasText 15%, Canvas 85%); border-radius:14px; padding:20px; }
+.card strong { color:var(--accent); display:block; font-size:2.2rem; } .card span { font-size:.9rem; }
+.table-wrap { overflow-x:auto; } table { border-collapse:collapse; width:100%; } th,td { border-bottom:1px solid color-mix(in srgb, CanvasText 16%, Canvas 84%); padding:12px 10px; text-align:right; white-space:nowrap; } th:first-child { text-align:left; } thead th { font-size:.78rem; text-transform:uppercase; }
+.note { font-size:.86rem; } code { background:var(--panel); padding:.15rem .35rem; border-radius:.3rem; }
+</style></head><body>
+<h1>Branch once. Evaluate everywhere.</h1>
+<p class="lede">A reproducible comparison of clean trial environments created from one running Smol checkpoint versus machine or container startup. Every scored run must pass the task verifier.</p>
+
+    <section>
+      <h2>gso-speedup-numpy-strings</h2>
+      <p class="meta">harbor-index/harbor-index-1.0 · 4 trials × 3 repetitions · concurrency 4 · agent nop</p>
+
+        <div class="cards">
+          <div class="card"><strong>0.98×</strong><span>end-to-end speed vs Podman</span></div>
+          <div class="card"><strong>0.92×</strong><span>median readiness vs Podman</span></div>
+          <div class="card"><strong>0.99×</strong><span>p99 readiness vs Podman</span></div>
+        </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Provider</th><th>Wall</th><th>Harbor job</th><th>Setup p50</th><th>Setup p99</th><th>Handoff p50</th><th>Verifier p99</th><th>Approx. host memory</th><th>Completed</th><th>Mean reward</th></tr></thead>
+        <tbody><tr><th>smol-branch</th><td>53.20s</td><td>50.25s</td><td>2.37s</td><td>2.38s</td><td>12.63s</td><td>36.02s</td><td>11077.55 MiB</td><td>12/12</td><td>0.000</td></tr><tr><th>Podman</th><td>52.17s</td><td>48.97s</td><td>2.18s</td><td>2.35s</td><td>25.99s</td><td>19.86s</td><td>427.30 MiB</td><td>12/12</td><td>0.000</td></tr></tbody>
+      </table></div>
+      <p class="note">Values are medians across repetitions. The reusable checkpoint took 62.18s to prepare once; the equivalently prepared Podman image was cached. Both costs are separate from each fan-out wave. Handoff is Harbor's uninstrumented gap between agent completion and verifier start, which can include artifact collection, transfer and verifier setup. Memory is an approximate process-external MemAvailable delta, not per-VM RSS.</p>
+    </section>
+<p class="note">Generated from the raw Harbor result artifacts by <code>bench/render_results.py</code>.</p>
+</body></html>

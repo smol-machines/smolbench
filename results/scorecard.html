@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smol branching workload scorecard</title>
+<style>
+:root { color-scheme:light dark; font-family:ui-sans-serif,system-ui,sans-serif; --accent:#ff5c35; --panel:color-mix(in srgb,Canvas 94%,CanvasText 6%); }
+body { margin:0 auto; max-width:1180px; padding:48px 24px 80px; background:Canvas; color:CanvasText; }
+h1 { font-size:clamp(2.2rem,6vw,4.8rem); letter-spacing:-.055em; margin:0 0 12px; }
+p { line-height:1.55; } .lede,.note,small { color:color-mix(in srgb,CanvasText 68%,Canvas 32%); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin:28px 0 36px; }
+.card { background:var(--panel); border:1px solid color-mix(in srgb,CanvasText 15%,Canvas 85%); border-radius:14px; padding:20px; }
+.card strong { color:var(--accent); display:block; font-size:2.15rem; }
+.table { overflow-x:auto; } table { border-collapse:collapse; width:100%; }
+th,td { border-bottom:1px solid color-mix(in srgb,CanvasText 16%,Canvas 84%); padding:13px 10px; text-align:right; vertical-align:top; white-space:nowrap; }
+th:first-child { text-align:left; white-space:normal; min-width:250px; } th small { display:block; font-weight:400; margin-top:5px; }
+thead th { font-size:.75rem; text-transform:uppercase; } .faster { color:#38a169; } .slower { color:#d97706; }
+</style></head><body>
+<h1>Branch once. Test the real workload.</h1>
+<p class="lede">A consolidated, correctness-gated comparison of Smol branches and equivalent Docker or Podman environments. Model inference is excluded because it is shared provider cost.</p>
+<div class="cards">
+  <div class="card"><strong>9</strong><span>public workload controls</span></div>
+  <div class="card"><strong>7/9</strong><span>faster full lifecycle</span></div>
+  <div class="card"><strong>440</strong><span>correct executions represented</span></div>
+  <div class="card"><strong>6.12x</strong><span>lower physical-memory pressure at N=16</span></div>
+  <div class="card"><strong>36/36</strong><span><a href="cloud-branch-state.json">Smol Cloud live, batch, and nested branch checks</a></span></div>
+</div>
+<div class="table"><table><thead><tr><th>Workload</th><th>Fan-out</th><th>Smol</th><th>Control</th><th>Result</th><th>Correct</th><th>Evidence</th></tr></thead><tbody><tr><th>Aider Polyglot<small>Ordinary Dockerfile-backed coding task and verifier.</small></th><td>4</td><td>8.382s</td><td>Docker<br>16.975s</td><td class='faster'>2.03x faster</td><td>24/24</td><td><a href='aider-polyglot-n4.json'>JSON</a></td></tr><tr><th>Aider Polyglot<small>The same coding task at 16-way concurrency.</small></th><td>16</td><td>12.900s</td><td>Docker<br>19.928s</td><td class='faster'>1.54x faster</td><td>96/96</td><td><a href='aider-polyglot-n16.json'>JSON</a></td></tr><tr><th>Terminal-Bench regex-log<small>Prepared shell environment and official verifier.</small></th><td>4</td><td>11.749s</td><td>Docker<br>19.724s</td><td class='faster'>1.68x faster</td><td>24/24</td><td><a href='terminal-bench-matched-instrumented.json'>JSON</a></td></tr><tr><th>SWE-bench Verified<small>Published Django issue, oracle patch, and official verifier.</small></th><td>4</td><td>24.925s</td><td>Docker<br>27.030s</td><td class='faster'>1.08x faster</td><td>24/24</td><td><a href='swebench-verified-pinned-final.json'>JSON</a></td></tr><tr><th>Harbor Index GSO<small>Large NumPy build and artifact-to-verifier path on an eight-core bare-metal host; the nop control intentionally scores zero.</small></th><td>4</td><td>53.204s</td><td>Podman<br>52.167s</td><td class='slower'>1.02x slower</td><td>24/24</td><td><a href='harbor-index-gso-n4.json'>JSON</a></td></tr><tr><th>tau2-bench retail<small>Branch/evaluate/select over initialized tool and database state.</small></th><td>4</td><td>2.885s</td><td>Docker<br>3.718s</td><td class='faster'>1.29x faster</td><td>24/24</td><td><a href='tau2-branch-search.json'>JSON</a></td></tr><tr><th>BrowserGym MiniWoB<small>Live Chromium state branches correctly; first-touch execution remains slower.</small></th><td>4</td><td>5.811s</td><td>Docker<br>3.044s</td><td class='slower'>1.91x slower</td><td>24/24</td><td><a href='browsergym-branch-search.json'>JSON</a></td></tr><tr><th>Braintrust bash-agent-evals<small>Representative lifecycle on bare metal: release a branch retained at the initialized hotspot versus create a fresh container; direct recapture and prewarmed-process controls remain in the artifact.</small></th><td>4</td><td>0.126s</td><td>Podman<br>0.327s</td><td class='faster'>2.58x faster</td><td>40/40</td><td><a href='braintrust-warm-baremetal-i9700-5x4.json'>JSON</a></td></tr><tr><th>CPU and memory control<small>Same content-addressed image, exact outputs, physical host-memory sampling, and initialized 256 MiB state.</small></th><td>16</td><td>1.440s</td><td>Podman<br>1.513s</td><td class='faster'>1.05x faster; 6.12x lower physical-memory pressure</td><td>160/160</td><td><a href='cpu-density.json'>JSON</a></td></tr></tbody></table></div>
+<p class="note">Times are median full-wave durations. Preparation is performed equivalently and reported separately in each linked artifact. Faster and slower controls are both retained so the workload boundary remains visible.</p>
+</body></html>

@@ -1,0 +1,60 @@
+{
+  "benchmark": "tau2-bench",
+  "domain": "retail",
+  "task_id": "33",
+  "source_repository": "https://github.com/sierra-research/tau2-bench.git",
+  "source_revision": "672227c6b6676edc20d57ea53b7000262aae77b9",
+  "user_id": "noah_patel_6952",
+  "order_id": "#W1845024",
+  "candidates": [
+    {
+      "label": "correct",
+      "title": "Move the profile to the Seattle address",
+      "decision": "official",
+      "expected_reward": 1.0,
+      "expected_city": "Seattle",
+      "expected_order_status": "pending"
+    },
+    {
+      "label": "wrong-address",
+      "title": "Move the profile to a Portland address",
+      "decision": {
+        "name": "modify_user_address",
+        "arguments": {
+          "user_id": "noah_patel_6952",
+          "address1": "1 Wrong Way",
+          "address2": "",
+          "city": "Portland",
+          "country": "USA",
+          "state": "OR",
+          "zip": "97201"
+        }
+      },
+      "expected_reward": 0.0,
+      "expected_city": "Portland",
+      "expected_order_status": "pending"
+    },
+    {
+      "label": "cancel-order",
+      "title": "Cancel the pending order",
+      "decision": {
+        "name": "cancel_pending_order",
+        "arguments": {
+          "order_id": "#W1845024",
+          "reason": "no longer needed"
+        }
+      },
+      "expected_reward": 0.0,
+      "expected_city": "New York",
+      "expected_order_status": "cancelled"
+    },
+    {
+      "label": "no-change",
+      "title": "Leave the customer state unchanged",
+      "decision": null,
+      "expected_reward": 0.0,
+      "expected_city": "New York",
+      "expected_order_status": "pending"
+    }
+  ]
+}

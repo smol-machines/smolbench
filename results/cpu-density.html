@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smol branch density control</title><style>
+body{font-family:system-ui,sans-serif;max-width:920px;margin:48px auto;padding:0 24px;color:#172033}
+h1{font-size:42px} .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{padding:18px;border:1px solid #d6dae2;border-radius:14px} strong{display:block;font-size:32px}
+table{border-collapse:collapse;width:100%;margin-top:28px} th,td{padding:12px;border-bottom:1px solid #ddd;text-align:right}
+th:first-child{text-align:left} code{font-size:0.9em} @media(max-width:700px){.cards{grid-template-columns:1fr}}
+</style></head><body>
+<h1>One initialized process, 16 isolated branches.</h1>
+<p>The exact same Python image runs through Smol branches and native containers. Host <code>MemAvailable</code> is sampled while every worker remains alive.</p>
+<div class="cards"><div class="card"><strong>6.12×</strong>container / Smol host-memory pressure</div>
+<div class="card"><strong>21.62×</strong>container / Smol incremental worker memory</div>
+<div class="card"><strong>1.05×</strong>container / Smol wave time</div></div>
+<p>The source-visible capture-and-resume window was <strong>36.0 ms</strong>; child admission and workload completion are reported separately.</p>
+<table><thead><tr><th>Runtime</th><th>Wave</th><th>Worker median</th><th>Host-memory pressure</th><th>Incremental/worker</th></tr></thead>
+<tbody><tr><th>podman</th><td>1.51 s</td><td>316.9 ms</td><td>4099.1 MiB</td><td>256.2 MiB</td></tr><tr><th>smol-branch</th><td>1.44 s</td><td>528.9 ms</td><td>669.5 MiB</td><td>11.9 MiB</td></tr></tbody></table>
+<p>Smol preparation is reported separately in the JSON. Physical-memory deltas are repeated process-external observations and may contain host noise.</p>
+</body></html>
