@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "smolbench"
+version = "0.1.0"
+description = "Reproducible workload benchmarks for Smol branchable compute"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.12"
+authors = [{ name = "smol-machines" }]
+keywords = ["harbor", "smolvm", "microvm", "agent-eval", "terminal-bench", "sandbox"]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+]
+dependencies = ["smolmachines[harbor]>=1.13.1"]
+
+[project.optional-dependencies]
+harbor = []
+dev = ["pytest>=8", "ruff==0.14.14"]
+
+[project.urls]
+Homepage = "https://github.com/smol-machines/smolbench"
+Issues = "https://github.com/smol-machines/smolbench/issues"
+smolvm = "https://github.com/smol-machines/smolvm"
+Harbor = "https://www.harborframework.com/"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/harbor_smolvm"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+extend-exclude = [".cache", "results"]

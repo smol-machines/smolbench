@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-09-05",
+  "terminal_bench": {
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "software": {
+      "python": "3.14.7",
+      "harbor": "0.22.0",
+      "smolmachines": "1.13.1"
+    },
+    "verified_matched_preparation_workload": {
+      "attempts_per_wave": 4,
+      "concurrency": 4,
+      "repetitions": 3,
+      "checkpoint_prepare_seconds": 19.465,
+      "checkpoint_machine_create_seconds": 5.249,
+      "checkpoint_script_seconds": 14.216,
+      "docker_image_prepare_seconds": 10.490,
+      "smol_branch": {
+        "median_wall_seconds": 11.749,
+        "median_harbor_seconds": 9.209,
+        "median_setup_p50_seconds": 0.798,
+        "median_verifier_p50_seconds": 7.441,
+        "correct": 12,
+        "total": 12
+      },
+      "harbor_docker": {
+        "median_wall_seconds": 19.724,
+        "median_harbor_seconds": 17.018,
+        "median_setup_p50_seconds": 0.996,
+        "median_verifier_p50_seconds": 4.254,
+        "correct": 12,
+        "total": 12
+      },
+      "steady_state_wall_speedup": 1.679,
+      "setup_speedup": 1.248,
+      "docker_verifier_speedup": 1.750,
+      "three_wave_speedup_with_both_preparation_costs": 1.273,
+      "note": "Both paths applied the exact same curl, uv, and pytest preparation script. Docker's number includes Harbor's normal teardown grace period; Docker executed the verifier faster while Smol completed the full repeated lifecycle faster."
+    },
+    "lifecycle_only": {
+      "attempts_per_wave": 4,
+      "concurrency": 4,
+      "repetitions": 5,
+      "smol_branch_median_wall_seconds": 3.548,
+      "harbor_docker_median_wall_seconds": 14.876,
+      "smol_branch_median_setup_p50_seconds": 0.869,
+      "harbor_docker_median_setup_p50_seconds": 1.020,
+      "correct_environments_per_provider": 20,
+      "wall_speedup": 4.193,
+      "setup_speedup": 1.174
+    }
+  },
+  "braintrust_bash_agent_evals": {
+    "repository": "https://github.com/braintrustdata/bash-agent-evals.git",
+    "revision": "a13ca02330fdd4f000ca7ad5e8a3b6958afd27b8",
+    "dataset": "GH Archive 2024-01-15 hour 15",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "resources_per_environment": {
+      "cpus": 2,
+      "memory_mb": 4096
+    },
+    "checkpoint_prepare_seconds": 247.43,
+    "branch_count": 4,
+    "repetitions": 3,
+    "smol_branch": {
+      "median_branch_batch_seconds": 0.460,
+      "median_all_queries_wall_seconds": 0.908,
+      "median_ready_and_query_seconds": 1.368,
+      "query_latency_p50_seconds": 0.678,
+      "query_latency_p99_seconds": 0.938,
+      "correct": 12,
+      "total": 12
+    },
+    "warm_docker": {
+      "median_ready_and_query_seconds": 0.209,
+      "query_latency_p50_seconds": 0.192,
+      "query_latency_p99_seconds": 0.220,
+      "correct": 12,
+      "total": 12
+    },
+    "docker_speedup": 6.545,
+    "note": "This matched model-free control used the same pinned application, data, two CPUs, and 4 GiB per environment. It validates runtime compatibility and branch isolation, not model quality; warm Docker is materially faster for this sub-second workload."
+  },
+  "swebench_verified": {
+    "dataset": "swe-bench/swe-bench-verified",
+    "task": "django__django-10999",
+    "task_sha256": "25a9d5a010092e244318b78d3d9a248d78bc261ce89fafa2a5554dc2b665d91f",
+    "image_digest": "sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "attempts_per_wave": 4,
+    "concurrency": 4,
+    "repetitions": 3,
+    "smol_branch": {
+      "median_wall_seconds": 24.925,
+      "median_harbor_seconds": 22.415,
+      "median_setup_p50_seconds": 0.946,
+      "median_verifier_p50_seconds": 19.297,
+      "correct": 12,
+      "total": 12
+    },
+    "harbor_docker": {
+      "median_wall_seconds": 27.030,
+      "median_harbor_seconds": 24.428,
+      "median_setup_p50_seconds": 1.023,
+      "median_verifier_p50_seconds": 11.383,
+      "correct": 12,
+      "total": 12
+    },
+    "steady_state_wall_speedup": 1.084,
+    "note": "Both providers ran the published oracle patch and issue-specific SWE-bench verifier. Smol was approximately at lifecycle parity but executed the verifier substantially slower than Docker."
+  },
+  "live_browser_branching": {
+    "workload": "stateful Playwright Chromium service",
+    "image_digest": "sha256:8ff591d613b01c884cc488339ed4318b4513eaf0c57a164a878ba49e70e3f384",
+    "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "branches_per_wave": 4,
+    "concurrency": 4,
+    "repetitions": 3,
+    "smol_branch": {
+      "median_branch_seconds": 0.656,
+      "median_all_first_actions_seconds": 1.692,
+      "first_action_p50_seconds": 1.672,
+      "correct": 12,
+      "total": 12,
+      "screenshots_unique": true
+    },
+    "fresh_docker": {
+      "median_start_and_action_seconds": 0.842,
+      "correct": 12,
+      "total": 12,
+      "screenshots_unique": true
+    },
+    "docker_speedup": 2.790,
+    "note": "Each branch retained the running Chromium process and preloaded page, began with action count zero, performed one independent action, and produced a screenshot. This tiny page is a live-state capability demo; fresh Docker remains materially faster because restored Chromium pays substantial first-touch cost."
+  },
+  "browsergym_branch_search": {
+    "workload": "BrowserGym MiniWoB click-test",
+    "browsergym_version": "0.14.3",
+    "miniwob_revision": "7fd85d71a4b60325c6585396ec4f48377d049838",
+    "image_digest": "sha256:c257db7f706f31f852740b039dea4f4611418f1a6816c0ceae716dd20d4eddda",
+    "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "candidates_per_wave": 4,
+    "repetitions": 3,
+    "smol_branch": {
+      "median_branch_seconds": 1.715,
+      "median_all_actions_seconds": 4.096,
+      "action_p50_seconds": 3.564,
+      "action_p99_seconds": 4.157,
+      "source_unchanged": true,
+      "correct": 12,
+      "total": 12
+    },
+    "fresh_prepared_docker": {
+      "median_start_and_action_seconds": 3.044,
+      "action_p50_seconds": 2.183,
+      "action_p99_seconds": 3.080,
+      "correct": 12,
+      "total": 12
+    },
+    "smol_end_to_end_slowdown": 1.909,
+    "note": "All branches inherited the exact initial task screenshot and zero-action state, then used BrowserGym env.step for one correct and three incorrect candidate actions. Live-state branching works, while restored Chromium first-touch makes this small task slower than prepared Docker."
+  },
+  "tau2_branch_search": {
+    "repository": "https://github.com/sierra-research/tau2-bench.git",
+    "revision": "672227c6b6676edc20d57ea53b7000262aae77b9",
+    "version": "1.0.1",
+    "domain": "retail",
+    "task": "33",
+    "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "candidates_per_wave": 4,
+    "repetitions": 3,
+    "checkpoint_prepare_seconds": 39.734,
+    "smol_branch": {
+      "median_branch_seconds": 1.285,
+      "median_all_evaluations_seconds": 1.601,
+      "median_end_to_end_seconds": 2.885,
+      "evaluator_p50_seconds": 0.800,
+      "source_unchanged": true,
+      "correct": 12,
+      "total": 12
+    },
+    "fresh_prepared_docker": {
+      "median_start_and_evaluation_seconds": 3.718,
+      "worker_initialize_p50_seconds": 2.772,
+      "evaluator_p50_seconds": 0.162,
+      "correct": 12,
+      "total": 12
+    },
+    "smol_steady_state_speedup": 1.289,
+    "note": "Every candidate called the pinned tau2-bench retail tools and official database evaluator. Smol won by retaining the initialized Python benchmark state, despite slower evaluator execution after restore; model inference was excluded because it is provider-independent."
+  },
+  "swebench_hillclimb": {
+    "dataset": "swe-bench/swe-bench-verified",
+    "task": "django__django-10999",
+    "task_sha256": "25a9d5a010092e244318b78d3d9a248d78bc261ce89fafa2a5554dc2b665d91f",
+    "image_digest": "sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+    "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+    "candidates_per_wave": 4,
+    "repetitions": 3,
+    "expected_winner": "oracle",
+    "smol_branch": {
+      "median_branch_seconds": 0.397,
+      "median_score_wall_seconds": 11.756,
+      "correct": 12,
+      "total": 12
+    },
+    "docker": {
+      "median_create_and_score_seconds": 4.667,
+      "correct": 12,
+      "total": 12
+    },
+    "docker_end_to_end_speedup": 2.604,
+    "note": "Both paths applied the same four candidate scripts and ran the untouched official SWE-bench test patch and grader. The workflow is correct and demoable, but Docker is faster because the CPU-bound verifier executes materially faster."
+  },
+  "apple_silicon_branch_state": {
+    "host": "MacBook Pro with Apple M1 Pro",
+    "os": "macOS 26.5 arm64",
+    "smolvm": "1.13.1",
+    "image": "alpine:3.20",
+    "branches": 4,
+    "parallel": 4,
+    "repetitions": 3,
+    "completed": 12,
+    "errors": 0,
+    "median_branch_seconds": 0.634,
+    "branch_seconds_samples": [0.634, 0.644, 0.570],
+    "inherited_disk_state": true,
+    "inherited_ram_state": true,
+    "isolated_child_writes": true,
+    "leaked_machines": 0
+  },
+  "branch_scale_soak": {
+    "workload": "terminal-bench-sample@2.0/regex-log install-only environment lifecycle",
+    "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+    "host": {
+      "cpu": "Intel Xeon Platinum 8480+",
+      "logical_cpus": 26,
+      "kernel": "Linux 6.8.0-60-generic x86_64"
+    },
+    "smol_branch": [
+      {"fanout": 16, "repetitions": 5, "completed": 80, "errors": 0, "median_wall_seconds": 5.138, "median_harbor_seconds": 2.479},
+      {"fanout": 32, "repetitions": 3, "completed": 96, "errors": 0, "median_wall_seconds": 7.508, "median_harbor_seconds": 4.970},
+      {"fanout": 64, "repetitions": 3, "completed": 192, "errors": 0, "median_wall_seconds": 12.642, "median_harbor_seconds": 10.068},
+      {"fanout": 128, "repetitions": 1, "completed": 128, "errors": 0, "median_wall_seconds": 21.972, "median_harbor_seconds": 19.420, "qualification": "single boundary probe"}
+    ],
+    "n128_followup_soak": {
+      "repetitions": 3,
+      "completed": 352,
+      "total": 384,
+      "errors": 32,
+      "failed_repetitions": 1,
+      "result": "failed qualification",
+      "cause": "one 32-clone transactional batch failed after a clone hit the upstream KVM first-run ENOMEM defect on both bounded boot attempts",
+      "cleanup": "zero leaked Harbor machines or Docker containers"
+    },
+    "harbor_docker_n16": {
+      "repetitions": 5,
+      "completed": 80,
+      "errors": 0,
+      "median_wall_seconds": 17.070,
+      "median_harbor_seconds": 14.433
+    },
+    "n16_smol_full_lifecycle_speedup": 3.322,
+    "note": "Every wave ran the correctness-gated public Harbor environment. Docker environment readiness remained about 1.90x faster at N=16; Smol's complete lifecycle was faster due to branch fan-out and cleanup."
+  },
+  "additional_compatibility": [
+    {
+      "task": "terminal-bench-sample@2.0/sqlite-with-gcov",
+      "shape": "2 concurrent branches and 2 cold machines, repeated twice",
+      "result": "8/8 reward 1.0",
+      "coverage": "apt packages, Fossil archive extraction, configure, parallel C compilation with gcov, symlinks, and Python verification",
+      "branch_setup_p50_seconds": 0.192,
+      "cold_setup_p50_seconds": 4.684,
+      "note": "Branch readiness was 24.4x faster, while package-network and compilation variance prevented a full-runtime speed claim."
+    },
+    {
+      "task": "terminal-bench-sample@2.0/configure-git-webserver",
+      "shape": "2 concurrent branches",
+      "result": "2/2 reward 1.0",
+      "coverage": "package installation, user creation, SSH, a bare Git repository, post-receive hooks, nginx, and independent service state",
+      "branch_setup_p50_seconds": 0.202
+    }
+  ],
+  "negative_findings": [
+    "Without dependency preparation, concurrent package downloads dominated regex-log and Smol's median full wall time was 38.396 seconds versus Docker's 26.714 seconds.",
+    "build-cython-ext scored 0.0 from both a cold machine and independent branches because the same upstream pyknotid test failed; it is excluded from performance claims.",
+    "Current main at 8a571dc completed repeated prepared-branch soaks through N=64 and one N=128 probe, but a later N=128 three-wave qualification failed 32 trials in wave three after a KVM first-run ENOMEM exhausted the bounded retry.",
+    "For Braintrust's tiny prepared SQLite queries, warm Docker completed a four-way wave 6.55x faster than creating Smol branches and executing the queries.",
+    "On the selected SWE-bench Verified task, Docker's verifier was 1.70x faster even though Smol's complete Harbor lifecycle was 1.08x faster.",
+    "For the tiny live-browser page, fresh Docker completed start and action 2.79x faster than Smol branch and first action; Smol still preserved and independently branched the already-running browser state.",
+    "BrowserGym MiniWoB passed all 24 expected Smol and Docker outcomes, but Smol branch plus action was 1.91x slower than prepared Docker on the small click-test task.",
+    "In the tau2-bench run, evaluator work inside a restored branch took 0.800 seconds p50 versus 0.162 seconds in Docker; retaining initialized benchmark state still made the complete four-candidate wave 1.29x faster.",
+    "A real Qwen2.5-32B-Instruct-AWQ tau2-bench conversation completed inside a Smol branch with official tool calls and evaluator output while the source stayed live and unchanged, but task reward varied from 1.0 to 0.0 across temperature-zero trials; it is compatibility evidence rather than a provider performance result.",
+    "An earlier BrowserGym run used a released Python wheel whose native extension embedded SmolVM 1.13.1 even though PATH pointed at current main. Children passed, but the source correctly remained frozen under that older engine. The result was rejected; rebuilding the extension from 8a571dc made the source remain responsive and unchanged across every qualified wave.",
+    "A multi-threaded browser prototype consistently delayed a pre-checkpoint worker loop by 3.4-3.5 seconds after restore with both condition-variable and pipe wakeups; the published single-threaded service avoids this open blocked-thread edge case.",
+    "In the SWE-bench hill-climb demo, Docker created and scored the four candidates 2.60x faster; Smol's 0.397-second fan-out was outweighed by slower CPU-bound verifier execution."
+  ]
+}

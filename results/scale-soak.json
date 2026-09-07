@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-09-05",
+  "workload": {
+    "dataset": "terminal-bench-sample@2.0",
+    "task": "regex-log",
+    "mode": "Harbor install-only environment lifecycle"
+  },
+  "host": {
+    "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "logical_cpus": 26
+  },
+  "software": {
+    "python": "3.14.7",
+    "harbor": "0.22.0",
+    "smolmachines": "1.13.1"
+  },
+  "smolvm_revision": "8a571dce742a15631315ee6b386e5bae8f5af7ea",
+  "points": [
+    {
+      "provider": "smol-branch",
+      "fanout": 16,
+      "repetitions": 5,
+      "completed": 80,
+      "total": 80,
+      "errors": 0,
+      "median_wall_seconds": 5.137999315746129,
+      "median_harbor_seconds": 2.479454,
+      "median_setup_p50_seconds": 2.2575190000000003,
+      "median_setup_p99_seconds": 2.275231,
+      "median_completed_per_harbor_second": 6.453033611432194,
+      "approximate_median_peak_host_memory_mib": 276.20703125
+    },
+    {
+      "provider": "docker",
+      "fanout": 16,
+      "repetitions": 5,
+      "completed": 80,
+      "total": 80,
+      "errors": 0,
+      "median_wall_seconds": 17.07005680911243,
+      "median_harbor_seconds": 14.432634,
+      "median_setup_p50_seconds": 1.1894565,
+      "median_setup_p99_seconds": 1.318916,
+      "median_completed_per_harbor_second": 1.1085987491957463,
+      "approximate_median_peak_host_memory_mib": 697.28125
+    },
+    {
+      "provider": "smol-branch",
+      "fanout": 32,
+      "repetitions": 3,
+      "completed": 96,
+      "total": 96,
+      "errors": 0,
+      "median_wall_seconds": 7.507559419143945,
+      "median_harbor_seconds": 4.970277,
+      "median_setup_p50_seconds": 4.5468779999999995,
+      "median_setup_p99_seconds": 4.750379,
+      "median_completed_per_harbor_second": 6.4382729574226945,
+      "approximate_median_peak_host_memory_mib": 557.67578125
+    },
+    {
+      "provider": "smol-branch",
+      "fanout": 64,
+      "repetitions": 3,
+      "completed": 192,
+      "total": 192,
+      "errors": 0,
+      "median_wall_seconds": 12.641796783078462,
+      "median_harbor_seconds": 10.068228,
+      "median_setup_p50_seconds": 5.871168,
+      "median_setup_p99_seconds": 9.734423,
+      "median_completed_per_harbor_second": 6.35662998493876,
+      "approximate_median_peak_host_memory_mib": 888.0703125
+    },
+    {
+      "provider": "smol-branch",
+      "fanout": 128,
+      "repetitions": 1,
+      "completed": 128,
+      "total": 128,
+      "errors": 0,
+      "median_wall_seconds": 21.971525271888822,
+      "median_harbor_seconds": 19.420424,
+      "median_setup_p50_seconds": 10.2633985,
+      "median_setup_p99_seconds": 18.826766,
+      "median_completed_per_harbor_second": 6.590999249038023,
+      "approximate_median_peak_host_memory_mib": 831.1171875
+    }
+  ],
+  "failed_soaks": [
+    {
+      "provider": "smol-branch",
+      "fanout": 128,
+      "waves": 3,
+      "failed_waves": 1,
+      "completed": 352,
+      "total": 384,
+      "errors": 32,
+      "correctness_errors": [
+        "smol-branch failed correctness gate: rc=0, errors=32, rewards=0/128, observed=none, required_minimum=1.0"
+      ]
+    }
+  ],
+  "comparisons": {
+    "fanout_16": {
+      "smol_full_lifecycle_speedup": 3.322315897707268,
+      "smol_harbor_job_speedup": 5.820892018968692,
+      "docker_environment_setup_speedup": 1.8979416229176942,
+      "docker_to_smol_observed_memory_pressure_ratio": 2.524487688978772
+    }
+  },
+  "smol_completed": 496,
+  "smol_errors": 0,
+  "notes": [
+    "N=16, N=32, and N=64 are repeated soaks; N=128 is a single boundary probe when its repetition count is one.",
+    "A separate repeated N=128 qualification failed and is reported below; the successful single probe is not a production reliability claim.",
+    "Harbor job and wall measurements include creation, readiness, and cleanup; environment setup measures readiness only.",
+    "MemAvailable deltas are noisy process-external observations, not per-VM RSS or a physical COW accounting measurement."
+  ]
+}

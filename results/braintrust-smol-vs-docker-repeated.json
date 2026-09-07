@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "workload": {
+    "repository": "https://github.com/braintrustdata/bash-agent-evals.git",
+    "revision": "a13ca02330fdd4f000ca7ad5e8a3b6958afd27b8",
+    "image": "node:22-bookworm@sha256:8a34c4ab3ea2c5cd194f07e317b2a8f09461d3c8b05c4e34c8ccd56d56024c4d",
+    "dataset": "GH Archive 2024-01-15 hour 15"
+  },
+  "resources_per_environment": {
+    "cpus": 2,
+    "memory_mb": 4096
+  },
+  "mode": "smoke",
+  "agent": null,
+  "model": null,
+  "checkpoint": "braintrust-eval-20260905-132420-3e9f57",
+  "checkpoint_prepare_seconds": 247.4258223050274,
+  "branch_count": 4,
+  "repetitions": 3,
+  "branch_batch_seconds": 0.459603738039732,
+  "branch_to_completed_wall_seconds": 0.9080533138476312,
+  "branch_cleanup_seconds": 0.09674390172585845,
+  "checkpoint_cleanup_seconds": 6.060756798833609,
+  "total_experiment_seconds": 258.5505955819972,
+  "task_latency_seconds": {
+    "p50": 0.6780403214506805,
+    "p99": 0.9376958878710866,
+    "max": 0.9376958878710866
+  },
+  "correct": 12,
+  "host": {
+    "platform": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "logical_cpus": 26
+  },
+  "docker": {
+    "image": "smol-bench/braintrust-bash-evals:a13ca02330fd-9016c381a11d",
+    "image_built": false,
+    "image_prepare_seconds": 0.0,
+    "start_to_completed_wall_seconds": 0.2089414121583104,
+    "task_latency_seconds": {
+      "p50": 0.19198586069978774,
+      "p99": 0.2202981160953641,
+      "max": 0.2202981160953641
+    },
+    "correct": 12,
+    "runs": [
+      {
+        "repetition": 1,
+        "start_to_completed_wall_seconds": 0.22186847496777773,
+        "correct": 4,
+        "results": [
+          {
+            "branch": "bt-docker-20260905-132420-r01-0000",
+            "case": "most-issues",
+            "duration_seconds": 0.20201163180172443,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r01-0001",
+            "case": "merged-prs",
+            "duration_seconds": 0.20401647174730897,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"merged\":6894,\"total\":16483}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r01-0002",
+            "case": "vercel-repos",
+            "duration_seconds": 0.1983648301102221,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r01-0003",
+            "case": "most-repositories",
+            "duration_seconds": 0.2202981160953641,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+            "error": ""
+          }
+        ]
+      },
+      {
+        "repetition": 2,
+        "start_to_completed_wall_seconds": 0.1950702229514718,
+        "correct": 4,
+        "results": [
+          {
+            "branch": "bt-docker-20260905-132420-r02-0000",
+            "case": "most-issues",
+            "duration_seconds": 0.1729144211858511,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r02-0001",
+            "case": "merged-prs",
+            "duration_seconds": 0.17961810203269124,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"merged\":6894,\"total\":16483}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r02-0002",
+            "case": "vercel-repos",
+            "duration_seconds": 0.16899590706452727,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r02-0003",
+            "case": "most-repositories",
+            "duration_seconds": 0.1936034201644361,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+            "error": ""
+          }
+        ]
+      },
+      {
+        "repetition": 3,
+        "start_to_completed_wall_seconds": 0.2089414121583104,
+        "correct": 4,
+        "results": [
+          {
+            "branch": "bt-docker-20260905-132420-r03-0000",
+            "case": "most-issues",
+            "duration_seconds": 0.18620798038318753,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r03-0001",
+            "case": "merged-prs",
+            "duration_seconds": 0.19036830123513937,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"merged\":6894,\"total\":16483}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r03-0002",
+            "case": "vercel-repos",
+            "duration_seconds": 0.1822235849685967,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+            "error": ""
+          },
+          {
+            "branch": "bt-docker-20260905-132420-r03-0003",
+            "case": "most-repositories",
+            "duration_seconds": 0.20764522859826684,
+            "exit_code": 0,
+            "correct": true,
+            "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+            "error": ""
+          }
+        ]
+      }
+    ],
+    "results": [
+      {
+        "branch": "bt-docker-20260905-132420-r01-0000",
+        "case": "most-issues",
+        "duration_seconds": 0.20201163180172443,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r01-0001",
+        "case": "merged-prs",
+        "duration_seconds": 0.20401647174730897,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"merged\":6894,\"total\":16483}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r01-0002",
+        "case": "vercel-repos",
+        "duration_seconds": 0.1983648301102221,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r01-0003",
+        "case": "most-repositories",
+        "duration_seconds": 0.2202981160953641,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r02-0000",
+        "case": "most-issues",
+        "duration_seconds": 0.1729144211858511,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r02-0001",
+        "case": "merged-prs",
+        "duration_seconds": 0.17961810203269124,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"merged\":6894,\"total\":16483}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r02-0002",
+        "case": "vercel-repos",
+        "duration_seconds": 0.16899590706452727,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r02-0003",
+        "case": "most-repositories",
+        "duration_seconds": 0.1936034201644361,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r03-0000",
+        "case": "most-issues",
+        "duration_seconds": 0.18620798038318753,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r03-0001",
+        "case": "merged-prs",
+        "duration_seconds": 0.19036830123513937,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"merged\":6894,\"total\":16483}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r03-0002",
+        "case": "vercel-repos",
+        "duration_seconds": 0.1822235849685967,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+        "error": ""
+      },
+      {
+        "branch": "bt-docker-20260905-132420-r03-0003",
+        "case": "most-repositories",
+        "duration_seconds": 0.20764522859826684,
+        "exit_code": 0,
+        "correct": true,
+        "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+        "error": ""
+      }
+    ]
+  },
+  "runs": [
+    {
+      "repetition": 1,
+      "branch_batch_seconds": 0.48990355571731925,
+      "branch_to_completed_wall_seconds": 0.8894543098285794,
+      "cleanup_seconds": 0.09674390172585845,
+      "correct": 4,
+      "results": [
+        {
+          "branch": "bt-20260905-132420-r01-0000",
+          "case": "most-issues",
+          "duration_seconds": 0.6428680880926549,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r01-0001",
+          "case": "merged-prs",
+          "duration_seconds": 0.888227604329586,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"merged\":6894,\"total\":16483}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r01-0002",
+          "case": "vercel-repos",
+          "duration_seconds": 0.6475399490445852,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r01-0003",
+          "case": "most-repositories",
+          "duration_seconds": 0.695104171987623,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+          "error": ""
+        }
+      ]
+    },
+    {
+      "repetition": 2,
+      "branch_batch_seconds": 0.4472109521739185,
+      "branch_to_completed_wall_seconds": 0.9080533138476312,
+      "cleanup_seconds": 0.10081033781170845,
+      "correct": 4,
+      "results": [
+        {
+          "branch": "bt-20260905-132420-r02-0000",
+          "case": "most-issues",
+          "duration_seconds": 0.6506516011431813,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r02-0001",
+          "case": "merged-prs",
+          "duration_seconds": 0.906960781197995,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"merged\":6894,\"total\":16483}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r02-0002",
+          "case": "vercel-repos",
+          "duration_seconds": 0.6184265604242682,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r02-0003",
+          "case": "most-repositories",
+          "duration_seconds": 0.6768810977227986,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+          "error": ""
+        }
+      ]
+    },
+    {
+      "repetition": 3,
+      "branch_batch_seconds": 0.459603738039732,
+      "branch_to_completed_wall_seconds": 0.9387787482701242,
+      "cleanup_seconds": 0.0925760050304234,
+      "correct": 4,
+      "results": [
+        {
+          "branch": "bt-20260905-132420-r03-0000",
+          "case": "most-issues",
+          "duration_seconds": 0.6791995451785624,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r03-0001",
+          "case": "merged-prs",
+          "duration_seconds": 0.9376958878710866,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"merged\":6894,\"total\":16483}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r03-0002",
+          "case": "vercel-repos",
+          "duration_seconds": 0.6598940920084715,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+          "error": ""
+        },
+        {
+          "branch": "bt-20260905-132420-r03-0003",
+          "case": "most-repositories",
+          "duration_seconds": 0.7125267162919044,
+          "exit_code": 0,
+          "correct": true,
+          "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+          "error": ""
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "branch": "bt-20260905-132420-r01-0000",
+      "case": "most-issues",
+      "duration_seconds": 0.6428680880926549,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r01-0001",
+      "case": "merged-prs",
+      "duration_seconds": 0.888227604329586,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"merged\":6894,\"total\":16483}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r01-0002",
+      "case": "vercel-repos",
+      "duration_seconds": 0.6475399490445852,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r01-0003",
+      "case": "most-repositories",
+      "duration_seconds": 0.695104171987623,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r02-0000",
+      "case": "most-issues",
+      "duration_seconds": 0.6506516011431813,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r02-0001",
+      "case": "merged-prs",
+      "duration_seconds": 0.906960781197995,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"merged\":6894,\"total\":16483}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r02-0002",
+      "case": "vercel-repos",
+      "duration_seconds": 0.6184265604242682,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r02-0003",
+      "case": "most-repositories",
+      "duration_seconds": 0.6768810977227986,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r03-0000",
+      "case": "most-issues",
+      "duration_seconds": 0.6791995451785624,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"full_name\":\"microsoft/winget-pkgs\",\"count\":60}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r03-0001",
+      "case": "merged-prs",
+      "duration_seconds": 0.9376958878710866,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"merged\":6894,\"total\":16483}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r03-0002",
+      "case": "vercel-repos",
+      "duration_seconds": 0.6598940920084715,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"name\":\"ai\"},{\"name\":\"ai-chatbot\"},{\"name\":\"commerce\"},{\"name\":\"hyper\"},{\"name\":\"next.js\"},{\"name\":\"nft\"},{\"name\":\"storage\"},{\"name\":\"swr\"},{\"name\":\"turbo\"},{\"name\":\"vercel\"}]",
+      "error": ""
+    },
+    {
+      "branch": "bt-20260905-132420-r03-0003",
+      "case": "most-repositories",
+      "duration_seconds": 0.7125267162919044,
+      "exit_code": 0,
+      "correct": true,
+      "output": "[{\"owner\":\"favstats\",\"count\":170}]",
+      "error": ""
+    }
+  ]
+}

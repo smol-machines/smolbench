@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smol branching eval benchmark</title>
+<style>
+:root { color-scheme: light dark; font-family: ui-sans-serif, system-ui, sans-serif; --accent:#ff5c35; --panel:color-mix(in srgb, Canvas 94%, CanvasText 6%); }
+body { margin:0 auto; max-width:1120px; padding:48px 24px 80px; background:Canvas; color:CanvasText; }
+h1 { font-size:clamp(2rem,6vw,4.5rem); letter-spacing:-.05em; margin:0 0 12px; }
+h2 { font-size:2rem; margin:56px 0 8px; }
+p { line-height:1.55; } .lede,.meta,.note { color:color-mix(in srgb, CanvasText 68%, Canvas 32%); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:24px 0; }
+.card { background:var(--panel); border:1px solid color-mix(in srgb, CanvasText 15%, Canvas 85%); border-radius:14px; padding:20px; }
+.card strong { color:var(--accent); display:block; font-size:2.2rem; } .card span { font-size:.9rem; }
+.table-wrap { overflow-x:auto; } table { border-collapse:collapse; width:100%; } th,td { border-bottom:1px solid color-mix(in srgb, CanvasText 16%, Canvas 84%); padding:12px 10px; text-align:right; white-space:nowrap; } th:first-child { text-align:left; } thead th { font-size:.78rem; text-transform:uppercase; }
+.note { font-size:.86rem; } code { background:var(--panel); padding:.15rem .35rem; border-radius:.3rem; }
+</style></head><body>
+<h1>Branch once. Evaluate everywhere.</h1>
+<p class="lede">A reproducible comparison of clean trial environments created from one running Smol checkpoint versus machine or Docker startup. Every scored run must pass the task verifier.</p>
+
+    <section>
+      <h2>regex-log</h2>
+      <p class="meta">terminal-bench-sample@2.0 · 4 trials × 3 repetitions · concurrency 4 · agent oracle</p>
+
+        <div class="cards">
+          <div class="card"><strong>1.68×</strong><span>end-to-end wall-time speedup</span></div>
+          <div class="card"><strong>1.25×</strong><span>median environment-readiness speedup</span></div>
+          <div class="card"><strong>1.28×</strong><span>p99 environment-readiness speedup</span></div>
+        </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Provider</th><th>Wall</th><th>Harbor job</th><th>Setup p50</th><th>Setup p99</th><th>Verifier p99</th><th>Approx. host memory</th><th>Completed</th><th>Mean reward</th></tr></thead>
+        <tbody><tr><th>smol-branch</th><td>11.75s</td><td>9.21s</td><td>0.80s</td><td>0.80s</td><td>7.80s</td><td>1064.04 MiB</td><td>12/12</td><td>1.000</td></tr><tr><th>docker</th><td>19.72s</td><td>17.02s</td><td>1.00s</td><td>1.02s</td><td>4.47s</td><td>497.53 MiB</td><td>12/12</td><td>1.000</td></tr></tbody>
+      </table></div>
+      <p class="note">Values are medians across repetitions. The reusable checkpoint took 19.47s to prepare once; the equivalently prepared Docker image was cached. Both costs are separate from each fan-out wave. Memory is an approximate process-external MemAvailable delta, not per-VM RSS.</p>
+    </section>
+    <section>
+      <h2>django__django-10999</h2>
+      <p class="meta">swe-bench/swe-bench-verified (task sha256:25a9d5a010092e244318b78d3d9a248d78bc261ce89fafa2a5554dc2b665d91f) · 4 trials × 3 repetitions · concurrency 4 · agent oracle</p>
+
+        <div class="cards">
+          <div class="card"><strong>1.08×</strong><span>end-to-end wall-time speedup</span></div>
+          <div class="card"><strong>1.08×</strong><span>median environment-readiness speedup</span></div>
+          <div class="card"><strong>1.10×</strong><span>p99 environment-readiness speedup</span></div>
+        </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Provider</th><th>Wall</th><th>Harbor job</th><th>Setup p50</th><th>Setup p99</th><th>Verifier p99</th><th>Approx. host memory</th><th>Completed</th><th>Mean reward</th></tr></thead>
+        <tbody><tr><th>smol-branch</th><td>24.93s</td><td>22.41s</td><td>0.95s</td><td>0.95s</td><td>19.41s</td><td>3160.84 MiB</td><td>12/12</td><td>1.000</td></tr><tr><th>docker</th><td>27.03s</td><td>24.43s</td><td>1.02s</td><td>1.05s</td><td>11.42s</td><td>967.07 MiB</td><td>12/12</td><td>1.000</td></tr></tbody>
+      </table></div>
+      <p class="note">Values are medians across repetitions. The reusable checkpoint took 70.08s to prepare once; the equivalently prepared Docker image took 0.11s to build. Both costs are separate from each fan-out wave. Memory is an approximate process-external MemAvailable delta, not per-VM RSS.</p>
+    </section>
+    <section>
+      <h2>Braintrust bash-agent-evals</h2>
+      <p class="meta">Pinned revision a13ca02330fd · GH Archive 2024-01-15 hour 15 · 4-way fan-out × 3 repetitions</p>
+      <div class="cards">
+        <div class="card"><strong>460 ms</strong><span>median checkpoint-to-4-branches</span></div>
+        <div class="card"><strong>908 ms</strong><span>median wall time for each query wave</span></div>
+        <div class="card"><strong>12/12</strong><span>outputs matching published answers</span></div>
+
+        <div class="card"><strong>0.15×</strong><span>Smol relative speed vs warm Docker</span></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Runtime</th><th>Ready + queries</th><th>Task p50</th><th>Task p99</th><th>Correct</th></tr></thead>
+        <tbody>
+          <tr><th>Smol branches</th><td>1.37s</td><td>0.68s</td><td>0.94s</td><td>12/12</td></tr>
+          <tr><th>Warm Docker</th><td>0.21s</td><td>0.19s</td><td>0.22s</td><td>12/12</td></tr></tbody>
+      </table></div>
+      <p class="note">Preparing the live Smol checkpoint took 247.43s once. The equivalent Docker image was already cached. This model-free gate executes Braintrust's real transformed dataset and native SQLite dependency inside ordinary Node.js. It validates runtime compatibility and branch isolation, not model quality. <a href="https://github.com/braintrustdata/bash-agent-evals.git">View the public workload.</a></p>
+    </section>
+<p class="note">Generated from the raw Harbor result artifacts by <code>bench/render_results.py</code>.</p>
+</body></html>

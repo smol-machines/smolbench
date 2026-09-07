@@ -1,0 +1,3497 @@
+{
+  "schema_version": 2,
+  "benchmark": "braintrust-warm-inherited-worker",
+  "workload": {
+    "repository": "https://github.com/braintrustdata/bash-agent-evals.git",
+    "revision": "a13ca02330fdd4f000ca7ad5e8a3b6958afd27b8",
+    "base_image": "node:22-bookworm@sha256:8a34c4ab3ea2c5cd194f07e317b2a8f09461d3c8b05c4e34c8ccd56d56024c4d",
+    "worker_image": "smol-bench/braintrust-warm-worker:6bfcb12ccfcd",
+    "dataset": "GH Archive 2024-01-15 hour 15",
+    "execution_boundary": "ordinary Node process with an open better-sqlite3 connection, prepared statements and warmed query pages"
+  },
+  "resources_per_environment": {
+    "cpus": 2,
+    "memory_mb": 4096
+  },
+  "fanout": 4,
+  "parallel": 4,
+  "repetitions": 5,
+  "source": {
+    "create_seconds": 21.037126729032025,
+    "boot_attempts": 1,
+    "workload_prepare_seconds": 207.2593415849842,
+    "workload_prepare_stage_seconds": {
+      "system-dependencies": 3.1348526179790497,
+      "checkout": 0.6271642340580001,
+      "dependencies": 11.190054027014412,
+      "dataset-download": 4.4855594269465655,
+      "dataset-transform": 187.81433919805568
+    },
+    "start_to_ready_seconds": 0.17352621792815626,
+    "ready_wait_seconds": 0.16453116305638105,
+    "memory_pressure_bytes": 4203986944,
+    "vmm_pss_bytes": 4324869120
+  },
+  "preparation": {
+    "base_image_built": false,
+    "base_image_prepare_seconds": 0.0,
+    "worker_image_built": false,
+    "worker_image_build_seconds": 0.0
+  },
+  "smol_direct": {
+    "wall_seconds": {
+      "median": 1.6509106069767043,
+      "p99": 1.7627121959622312,
+      "min": 0.5431990041098654,
+      "max": 1.7627121959622312
+    },
+    "query_seconds": {
+      "p50": 0.0261826005,
+      "p99": 0.045397979,
+      "max": 0.045397979
+    },
+    "correct": 20,
+    "runs": [
+      {
+        "repetition": 1,
+        "branch_seconds": 0.4984606431098655,
+        "query_tail_seconds": 0.044738361,
+        "checkpoint_to_result_seconds": 0.5431990041098654,
+        "latency_measurement": "branch_ack_wall_plus_max_guest_query",
+        "result_collection_seconds_excluded": 0.017803273047320545,
+        "memory_pressure_bytes": 176541696,
+        "source_and_children_vmm_pss_bytes": 37475328,
+        "stdout": "Machine 'bt-direct-f93598d3-r1-1' running (PID: 1701036)\nMachine 'bt-direct-f93598d3-r1-2' running (PID: 1701037)\nMachine 'bt-direct-f93598d3-r1-0' running (PID: 1701031)\nMachine 'bt-direct-f93598d3-r1-3' running (PID: 1701035)\n",
+        "stderr": "Waiting for source 'bt-warm-source-f93598d3' to reach its branchpoint...\nCheckpointing 'bt-warm-source-f93598d3' once for 4 clones while keeping it running...\nBooting child 'bt-direct-f93598d3-r1-0' from snapshot...\nBooting child 'bt-direct-f93598d3-r1-1' from snapshot...\nBooting child 'bt-direct-f93598d3-r1-2' from snapshot...\nBooting child 'bt-direct-f93598d3-r1-3' from snapshot...\nStarting machine 'bt-direct-f93598d3-r1-0'...\nStarting machine 'bt-direct-f93598d3-r1-1'...\nStarting machine 'bt-direct-f93598d3-r1-3'...\nStarting machine 'bt-direct-f93598d3-r1-2'...\nBranched 4 children from 'bt-warm-source-f93598d3' with one snapshot.\n",
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r1-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 20.783697,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.984224,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r1-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 30.956918,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.305312,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r1-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 15.52795,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.721711,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r1-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 44.738361,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.611432,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 2,
+        "branch_seconds": 1.7177427159622312,
+        "query_tail_seconds": 0.04496948,
+        "checkpoint_to_result_seconds": 1.7627121959622312,
+        "latency_measurement": "branch_ack_wall_plus_max_guest_query",
+        "result_collection_seconds_excluded": 0.01869005395565182,
+        "memory_pressure_bytes": 0,
+        "source_and_children_vmm_pss_bytes": 108131328,
+        "stdout": "Machine 'bt-direct-f93598d3-r2-2' running (PID: 1703110)\nMachine 'bt-direct-f93598d3-r2-3' running (PID: 1703112)\nMachine 'bt-direct-f93598d3-r2-0' running (PID: 1703106)\nMachine 'bt-direct-f93598d3-r2-1' running (PID: 1703111)\n",
+        "stderr": "Waiting for source 'bt-warm-source-f93598d3' to reach its branchpoint...\nCheckpointing 'bt-warm-source-f93598d3' once for 4 clones while keeping it running...\nBooting child 'bt-direct-f93598d3-r2-0' from snapshot...\nBooting child 'bt-direct-f93598d3-r2-1' from snapshot...\nBooting child 'bt-direct-f93598d3-r2-2' from snapshot...\nBooting child 'bt-direct-f93598d3-r2-3' from snapshot...\nStarting machine 'bt-direct-f93598d3-r2-0'...\nStarting machine 'bt-direct-f93598d3-r2-3'...\nStarting machine 'bt-direct-f93598d3-r2-2'...\nStarting machine 'bt-direct-f93598d3-r2-1'...\nBranched 4 children from 'bt-warm-source-f93598d3' with one snapshot.\n",
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r2-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 20.639391,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 10.977426,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r2-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 31.30339,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.322011,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r2-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 13.828172,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.577005,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r2-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 44.96948,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.772458,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 3,
+        "branch_seconds": 1.6073523099767044,
+        "query_tail_seconds": 0.043558297,
+        "checkpoint_to_result_seconds": 1.6509106069767043,
+        "latency_measurement": "branch_ack_wall_plus_max_guest_query",
+        "result_collection_seconds_excluded": 0.023429396096616983,
+        "memory_pressure_bytes": 38006784,
+        "source_and_children_vmm_pss_bytes": 110660608,
+        "stdout": "Machine 'bt-direct-f93598d3-r3-0' running (PID: 1703780)\nMachine 'bt-direct-f93598d3-r3-2' running (PID: 1703782)\nMachine 'bt-direct-f93598d3-r3-3' running (PID: 1703783)\nMachine 'bt-direct-f93598d3-r3-1' running (PID: 1703784)\n",
+        "stderr": "Waiting for source 'bt-warm-source-f93598d3' to reach its branchpoint...\nCheckpointing 'bt-warm-source-f93598d3' once for 4 clones while keeping it running...\nBooting child 'bt-direct-f93598d3-r3-0' from snapshot...\nBooting child 'bt-direct-f93598d3-r3-1' from snapshot...\nBooting child 'bt-direct-f93598d3-r3-2' from snapshot...\nBooting child 'bt-direct-f93598d3-r3-3' from snapshot...\nStarting machine 'bt-direct-f93598d3-r3-0'...\nStarting machine 'bt-direct-f93598d3-r3-2'...\nStarting machine 'bt-direct-f93598d3-r3-1'...\nStarting machine 'bt-direct-f93598d3-r3-3'...\nBranched 4 children from 'bt-warm-source-f93598d3' with one snapshot.\n",
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r3-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 20.230418,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 10.012516,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r3-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 31.758678,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.38689,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r3-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 14.885083,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 5.111156,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r3-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 43.558297,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.384833,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 4,
+        "branch_seconds": 1.5867710270686075,
+        "query_tail_seconds": 0.045397979,
+        "checkpoint_to_result_seconds": 1.6321690060686076,
+        "latency_measurement": "branch_ack_wall_plus_max_guest_query",
+        "result_collection_seconds_excluded": 0.018094004946760833,
+        "memory_pressure_bytes": 0,
+        "source_and_children_vmm_pss_bytes": 112405504,
+        "stdout": "Machine 'bt-direct-f93598d3-r4-0' running (PID: 1704729)\nMachine 'bt-direct-f93598d3-r4-3' running (PID: 1704734)\nMachine 'bt-direct-f93598d3-r4-1' running (PID: 1704732)\nMachine 'bt-direct-f93598d3-r4-2' running (PID: 1704733)\n",
+        "stderr": "Waiting for source 'bt-warm-source-f93598d3' to reach its branchpoint...\nCheckpointing 'bt-warm-source-f93598d3' once for 4 clones while keeping it running...\nBooting child 'bt-direct-f93598d3-r4-0' from snapshot...\nBooting child 'bt-direct-f93598d3-r4-1' from snapshot...\nBooting child 'bt-direct-f93598d3-r4-2' from snapshot...\nBooting child 'bt-direct-f93598d3-r4-3' from snapshot...\nStarting machine 'bt-direct-f93598d3-r4-0'...\nStarting machine 'bt-direct-f93598d3-r4-1'...\nStarting machine 'bt-direct-f93598d3-r4-2'...\nStarting machine 'bt-direct-f93598d3-r4-3'...\nBranched 4 children from 'bt-warm-source-f93598d3' with one snapshot.\n",
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r4-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 20.329082,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.828804,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r4-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 32.126847,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.414489,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r4-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 14.732532,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.667803,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r4-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 45.397979,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.357199,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 5,
+        "branch_seconds": 1.7172963089542463,
+        "query_tail_seconds": 0.044056797,
+        "checkpoint_to_result_seconds": 1.7613531059542464,
+        "latency_measurement": "branch_ack_wall_plus_max_guest_query",
+        "result_collection_seconds_excluded": 0.019160141935572028,
+        "memory_pressure_bytes": 0,
+        "source_and_children_vmm_pss_bytes": 115135488,
+        "stdout": "Machine 'bt-direct-f93598d3-r5-3' running (PID: 1705392)\nMachine 'bt-direct-f93598d3-r5-0' running (PID: 1705387)\nMachine 'bt-direct-f93598d3-r5-2' running (PID: 1705391)\nMachine 'bt-direct-f93598d3-r5-1' running (PID: 1705393)\n",
+        "stderr": "Waiting for source 'bt-warm-source-f93598d3' to reach its branchpoint...\nCheckpointing 'bt-warm-source-f93598d3' once for 4 clones while keeping it running...\nBooting child 'bt-direct-f93598d3-r5-0' from snapshot...\nBooting child 'bt-direct-f93598d3-r5-1' from snapshot...\nBooting child 'bt-direct-f93598d3-r5-2' from snapshot...\nBooting child 'bt-direct-f93598d3-r5-3' from snapshot...\nStarting machine 'bt-direct-f93598d3-r5-0'...\nStarting machine 'bt-direct-f93598d3-r5-2'...\nStarting machine 'bt-direct-f93598d3-r5-1'...\nStarting machine 'bt-direct-f93598d3-r5-3'...\nBranched 4 children from 'bt-warm-source-f93598d3' with one snapshot.\n",
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r5-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 21.408283,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 10.147737,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r5-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 31.607115,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.402435,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r5-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 14.101157,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.758243,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-direct",
+            "run_id": "direct-r5-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 44.056797,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 35.566,
+            "repeat_correct": true
+          }
+        ]
+      }
+    ],
+    "branch_seconds_median": 1.6073523099767044
+  },
+  "smol_retained_pool": {
+    "wall_seconds": {
+      "median": 0.12631828599903094,
+      "p99": 0.13147928807038486,
+      "min": 0.08800530107737631,
+      "max": 0.13147928807038486
+    },
+    "query_seconds": {
+      "p50": 0.0285352855,
+      "p99": 0.05191255,
+      "max": 0.05191255
+    },
+    "correct": 20,
+    "runs": [
+      {
+        "repetition": 1,
+        "pool_fill_seconds": 1.4806959650013596,
+        "release_commands_seconds": 0.08646348502952605,
+        "release_to_result_seconds": 0.12631828599903094,
+        "latency_measurement": "per_child_release_ack_wall_plus_guest_query",
+        "result_collection_seconds_excluded": 0.0173851209692657,
+        "pool_memory_pressure_bytes": 4731711488,
+        "source_and_pool_vmm_pss_bytes": 101378048,
+        "source_and_active_children_vmm_pss_bytes": 101644288,
+        "release_acks": [
+          {
+            "index": 0,
+            "ack_elapsed_seconds": 0.08219742402434349,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r1-0'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 1,
+            "ack_elapsed_seconds": 0.08620342600625008,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r1-1'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 2,
+            "ack_elapsed_seconds": 0.08226946101058275,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r1-2'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 3,
+            "ack_elapsed_seconds": 0.08366196299903095,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r1-3'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          }
+        ],
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 18.507304,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.972933,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 28.904214,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.186996,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 12.505299,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.426773,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 42.656323,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.75212,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 2,
+        "pool_fill_seconds": 1.6911690189735964,
+        "release_commands_seconds": 0.09168423805385828,
+        "release_to_result_seconds": 0.13147928807038486,
+        "latency_measurement": "per_child_release_ack_wall_plus_guest_query",
+        "result_collection_seconds_excluded": 0.020667197066359222,
+        "pool_memory_pressure_bytes": 752713728,
+        "source_and_pool_vmm_pss_bytes": 105872384,
+        "source_and_active_children_vmm_pss_bytes": 105884672,
+        "release_acks": [
+          {
+            "index": 0,
+            "ack_elapsed_seconds": 0.08294405101332814,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r2-0'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 1,
+            "ack_elapsed_seconds": 0.09121551807038486,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r2-1'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 2,
+            "ack_elapsed_seconds": 0.08297981310170144,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r2-2'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 3,
+            "ack_elapsed_seconds": 0.0833025510655716,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r2-3'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          }
+        ],
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 28.166357,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 10.127302,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 40.26377,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.29612,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 19.932316,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 5.041775,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 46.574984,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.448215,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 3,
+        "pool_fill_seconds": 1.7007843959145248,
+        "release_commands_seconds": 0.040461007039994,
+        "release_to_result_seconds": 0.08800530107737631,
+        "latency_measurement": "per_child_release_ack_wall_plus_guest_query",
+        "result_collection_seconds_excluded": 0.017483654082752764,
+        "pool_memory_pressure_bytes": 0,
+        "source_and_pool_vmm_pss_bytes": 109500416,
+        "source_and_active_children_vmm_pss_bytes": 109512704,
+        "release_acks": [
+          {
+            "index": 0,
+            "ack_elapsed_seconds": 0.036734285997226834,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r3-0'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 1,
+            "ack_elapsed_seconds": 0.03626805706880987,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r3-1'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 2,
+            "ack_elapsed_seconds": 0.04009977506939322,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r3-2'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 3,
+            "ack_elapsed_seconds": 0.036092751077376306,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r3-3'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          }
+        ],
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 21.42584,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 11.713913,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 33.718426,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.990374,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 15.034984,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 6.280848,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 51.91255,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 32.172079,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 4,
+        "pool_fill_seconds": 1.550766592961736,
+        "release_commands_seconds": 0.09375782194547355,
+        "release_to_result_seconds": 0.12667102998021132,
+        "latency_measurement": "per_child_release_ack_wall_plus_guest_query",
+        "result_collection_seconds_excluded": 0.0171243631048128,
+        "pool_memory_pressure_bytes": 0,
+        "source_and_pool_vmm_pss_bytes": 113739776,
+        "source_and_active_children_vmm_pss_bytes": 113752064,
+        "release_acks": [
+          {
+            "index": 0,
+            "ack_elapsed_seconds": 0.09356462094001472,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r4-0'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 1,
+            "ack_elapsed_seconds": 0.08612557291053236,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r4-1'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 2,
+            "ack_elapsed_seconds": 0.08601452794391662,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r4-2'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 3,
+            "ack_elapsed_seconds": 0.08299198898021132,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r4-3'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          }
+        ],
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 19.646779,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.959302,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 30.273599,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.417025,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 14.018348,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.713525,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 43.679041,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 31.394073,
+            "repeat_correct": true
+          }
+        ]
+      },
+      {
+        "repetition": 5,
+        "pool_fill_seconds": 1.579994159983471,
+        "release_commands_seconds": 0.0503864970523864,
+        "release_to_result_seconds": 0.10074603302487302,
+        "latency_measurement": "per_child_release_ack_wall_plus_guest_query",
+        "result_collection_seconds_excluded": 0.018342809984460473,
+        "pool_memory_pressure_bytes": 1345478656,
+        "source_and_pool_vmm_pss_bytes": 116285440,
+        "source_and_active_children_vmm_pss_bytes": 116297728,
+        "release_acks": [
+          {
+            "index": 0,
+            "ack_elapsed_seconds": 0.03646045702043921,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r5-0'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 1,
+            "ack_elapsed_seconds": 0.04622927901800722,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r5-1'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 2,
+            "ack_elapsed_seconds": 0.036566209979355335,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r5-2'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          },
+          {
+            "index": 3,
+            "ack_elapsed_seconds": 0.05006595002487302,
+            "stdout": "",
+            "stderr": "Released held branch slot 'bt-pool-f93598d3-r5-3'. Replace it from 'bt-warm-source-f93598d3' after the workload completes.\n"
+          }
+        ],
+        "results": [
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 21.708806,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 10.648733,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 33.384253,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 3.211966,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 14.439822,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 5.022277,
+            "repeat_correct": true
+          },
+          {
+            "pid": 514,
+            "provider": "smol-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 50.680083,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "repeat_query_ms": 37.260785,
+            "repeat_correct": true
+          }
+        ]
+      }
+    ],
+    "pool_fill_seconds_median": 1.579994159983471
+  },
+  "docker_fresh": {
+    "wall_seconds": {
+      "median": 0.32650786999147385,
+      "p99": 0.3875724230892956,
+      "min": 0.2689746640389785,
+      "max": 0.3875724230892956
+    },
+    "query_seconds": {
+      "p50": 0.007300654,
+      "p99": 0.037293791,
+      "max": 0.037293791
+    },
+    "correct": 20,
+    "runs": [
+      {
+        "repetition": 1,
+        "start_to_result_seconds": 0.3875724230892956,
+        "memory_pressure_bytes": 177086464,
+        "container_process_pss_bytes": 214064128,
+        "container_cgroup_memory_bytes": 173193296,
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r1-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 9.730328,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.720293,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r1-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 2.359953,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.228213,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r1-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 4.595637,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.516235,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r1-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 31.424982,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 2,
+        "start_to_result_seconds": 0.32650786999147385,
+        "memory_pressure_bytes": 111026176,
+        "container_process_pss_bytes": 211621888,
+        "container_cgroup_memory_bytes": 170362140,
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r2-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 9.84761,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.919858,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r2-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 2.394502,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.264048,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r2-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 4.537857,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.443239,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r2-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 31.497698,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 3,
+        "start_to_result_seconds": 0.3156473779818043,
+        "memory_pressure_bytes": 116543488,
+        "container_process_pss_bytes": 216030208,
+        "container_cgroup_memory_bytes": 175258991,
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r3-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 10.292263,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 10.25451,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r3-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 2.566877,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.580135,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r3-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 4.87098,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.719034,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r3-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 37.293791,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 4,
+        "start_to_result_seconds": 0.2689746640389785,
+        "memory_pressure_bytes": 161865728,
+        "container_process_pss_bytes": 218168320,
+        "container_cgroup_memory_bytes": 177660230,
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r4-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 9.802278,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.785441,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r4-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 2.40194,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.235637,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r4-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 4.515425,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.387076,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r4-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 31.77156,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 5,
+        "start_to_result_seconds": 0.35601002804469317,
+        "memory_pressure_bytes": 164425728,
+        "container_process_pss_bytes": 218187776,
+        "container_cgroup_memory_bytes": 177523915,
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r5-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 9.881168,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 9.750129,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r5-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 2.390809,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 2.299588,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r5-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 4.610696,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 4.513757,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-fresh",
+            "run_id": "fresh-r5-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 31.653555,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "docker_prewarmed_pool": {
+    "wall_seconds": {
+      "median": 0.06175438698846847,
+      "p99": 0.07222609897144139,
+      "min": 0.056423756992444396,
+      "max": 0.07222609897144139
+    },
+    "query_seconds": {
+      "p50": 0.01663312,
+      "p99": 0.061001844,
+      "max": 0.061001844
+    },
+    "correct": 20,
+    "runs": [
+      {
+        "repetition": 1,
+        "pool_fill_seconds": 0.2647725959541276,
+        "release_to_result_seconds": 0.056423756992444396,
+        "pool_memory_pressure_bytes": 329891840,
+        "container_process_pss_bytes": 214424576,
+        "container_cgroup_memory_bytes": 173476411,
+        "ready": [
+          {
+            "pid": 1,
+            "initialize_ms": 119.622737,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 0
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 118.49986,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 1
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 116.219094,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 2
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 118.913386,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 3
+          }
+        ],
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 18.621505,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 14.348852,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 3.688923,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 3.456564,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 7.797738,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 7.743518,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r1-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 46.274058,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 2,
+        "pool_fill_seconds": 0.2547694379463792,
+        "release_to_result_seconds": 0.06175438698846847,
+        "pool_memory_pressure_bytes": 89096192,
+        "container_process_pss_bytes": 209987584,
+        "container_cgroup_memory_bytes": 169093364,
+        "ready": [
+          {
+            "pid": 1,
+            "initialize_ms": 112.443121,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 0
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 111.73186,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 1
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 110.174769,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 2
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 111.062466,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 3
+          }
+        ],
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 23.617912,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 14.467494,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 5.0121,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 4.741375,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 11.033021,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 9.197572,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r2-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 56.235706,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 3,
+        "pool_fill_seconds": 0.3370329840108752,
+        "release_to_result_seconds": 0.07222609897144139,
+        "pool_memory_pressure_bytes": 95363072,
+        "container_process_pss_bytes": 214309888,
+        "container_cgroup_memory_bytes": 173749042,
+        "ready": [
+          {
+            "pid": 1,
+            "initialize_ms": 112.481415,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 0
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 111.361032,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 1
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 113.145731,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 2
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 110.586405,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 3
+          }
+        ],
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 30.758149,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 15.861948,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 6.636686,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 6.349695,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 14.644735,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 12.994679,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r3-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 61.001844,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 4,
+        "pool_fill_seconds": 0.2792268180055544,
+        "release_to_result_seconds": 0.06167086702771485,
+        "pool_memory_pressure_bytes": 148172800,
+        "container_process_pss_bytes": 218533888,
+        "container_cgroup_memory_bytes": 177209342,
+        "ready": [
+          {
+            "pid": 1,
+            "initialize_ms": 111.700237,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 0
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 111.244983,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 1
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 112.966342,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 2
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 114.269403,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 3
+          }
+        ],
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 22.794867,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 15.716336,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 4.578321,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 4.425213,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 9.978744,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 9.877338,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r4-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 57.09118,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repetition": 5,
+        "pool_fill_seconds": 0.37363979301881045,
+        "release_to_result_seconds": 0.06678801705129445,
+        "pool_memory_pressure_bytes": 81317888,
+        "container_process_pss_bytes": 214321152,
+        "container_cgroup_memory_bytes": 173570783,
+        "ready": [
+          {
+            "pid": 1,
+            "initialize_ms": 109.706474,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 0
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 114.521181,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 1
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 111.699124,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 2
+          },
+          {
+            "pid": 1,
+            "initialize_ms": 112.301978,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 3
+          }
+        ],
+        "results": [
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 0,
+            "case": "most-issues",
+            "query_ms": 23.043483,
+            "correct": true,
+            "observed": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "expected": [
+              {
+                "full_name": "microsoft/winget-pkgs",
+                "count": 60
+              }
+            ],
+            "repeat_query_ms": 16.616926,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 1,
+            "case": "merged-prs",
+            "query_ms": 4.755773,
+            "correct": true,
+            "observed": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "expected": [
+              {
+                "merged": 6894,
+                "total": 16483
+              }
+            ],
+            "repeat_query_ms": 4.513344,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 2,
+            "case": "vercel-repos",
+            "query_ms": 9.95377,
+            "correct": true,
+            "observed": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "expected": [
+              {
+                "name": "ai"
+              },
+              {
+                "name": "ai-chatbot"
+              },
+              {
+                "name": "commerce"
+              },
+              {
+                "name": "hyper"
+              },
+              {
+                "name": "next.js"
+              },
+              {
+                "name": "nft"
+              },
+              {
+                "name": "storage"
+              },
+              {
+                "name": "swr"
+              },
+              {
+                "name": "turbo"
+              },
+              {
+                "name": "vercel"
+              }
+            ],
+            "repeat_query_ms": 9.91495,
+            "repeat_correct": true
+          },
+          {
+            "pid": 1,
+            "provider": "docker-pool",
+            "run_id": "pool-r5-f93598d3",
+            "index": 3,
+            "case": "most-repositories",
+            "query_ms": 55.848379,
+            "correct": true,
+            "observed": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ],
+            "expected": [
+              {
+                "owner": "favstats",
+                "count": 170
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "pool_fill_seconds_median": 0.2792268180055544
+  },
+  "comparisons": {
+    "smol_direct_vs_docker_fresh": 0.19777440923309855,
+    "smol_retained_vs_docker_prewarmed": 0.488879234705118
+  },
+  "host": {
+    "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+    "machine": "x86_64",
+    "cpu_model": "Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz",
+    "logical_cpus": 8,
+    "virtualization": "none"
+  },
+  "runtime": {
+    "smolvm_path": "/home/binsquare/smolvm-braintrust-baremetal/target/release/smolvm",
+    "smolvm_version": "smolvm 1.14.1",
+    "smolvm_git_revision": "c60d65b1723ba09b88a742ddc7f88ac2166faadb",
+    "docker_version": "Docker version 29.7.2, build a7dcaa6fdb",
+    "container_engine": "Podman",
+    "container_server_version": "6.1.0"
+  }
+}

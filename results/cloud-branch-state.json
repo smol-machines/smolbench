@@ -1,0 +1,50 @@
+{
+  "checks_passed": 36,
+  "checks_total": 36,
+  "fanout": 4,
+  "image": "alpine:3.20",
+  "median_batch_branch_seconds": 1.1794850649894215,
+  "median_nested_parent_and_child_seconds": 1.1993671820382588,
+  "nested_branch_worked": true,
+  "repetitions": 3,
+  "runs": [
+    {
+      "batch_branch_seconds": 1.1794850649894215,
+      "checks_passed": 12,
+      "checks_total": 12,
+      "fanout": 4,
+      "nested_branch_worked": true,
+      "nested_parent_and_child_seconds": 1.1993671820382588,
+      "repetition": 1,
+      "source_continued": true
+    },
+    {
+      "batch_branch_seconds": 1.1753734270459972,
+      "checks_passed": 12,
+      "checks_total": 12,
+      "fanout": 4,
+      "nested_branch_worked": true,
+      "nested_parent_and_child_seconds": 1.2222616040380672,
+      "repetition": 2,
+      "source_continued": true
+    },
+    {
+      "batch_branch_seconds": 1.2316490220255218,
+      "checks_passed": 12,
+      "checks_total": 12,
+      "fanout": 4,
+      "nested_branch_worked": true,
+      "nested_parent_and_child_seconds": 1.1595111799542792,
+      "repetition": 3,
+      "source_continued": true
+    }
+  ],
+  "schema_version": 1,
+  "software": {
+    "smolcloud_revision": "bdfac6b0d60c463e7e2314001a967764d6831572",
+    "smolmachines": "1.13.1",
+    "smolvm_revision": "78e5250fce6aa2f16a6d8ce8f3e33c9ad970e6f1"
+  },
+  "source_continued": true,
+  "target": "smol-cloud"
+}
