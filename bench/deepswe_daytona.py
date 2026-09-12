@@ -1094,9 +1094,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if getattr(args, "memory_gb", None) is not None:
         tasks = [replace(task, memory_mb=args.memory_gb * 1024) for task in tasks]
     if getattr(args, "storage_gb", None) is not None:
-        tasks = [
-            replace(task, storage_mb=args.storage_gb * 1024) for task in tasks
-        ]
+        tasks = [replace(task, storage_mb=args.storage_gb * 1024) for task in tasks]
     if args.dry_run:
         return dry_run_payload(tasks, args)
     providers = [_provider(name, args) for name in args.providers]

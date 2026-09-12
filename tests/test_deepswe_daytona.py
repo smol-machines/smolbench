@@ -128,9 +128,7 @@ def test_install_archive_uses_persistent_workspace_path():
 
     benchmark._install_archive(machine, b"payload", "/solution", "solution")
 
-    assert machine.uploads == [
-        (b"payload", "/workspace/.smolbench-solution.tar.gz")
-    ]
+    assert machine.uploads == [(b"payload", "/workspace/.smolbench-solution.tar.gz")]
 
 
 def test_verify_uploads_patch_to_persistent_workspace(monkeypatch, tmp_path: Path):
@@ -142,14 +140,14 @@ def test_verify_uploads_patch_to_persistent_workspace(monkeypatch, tmp_path: Pat
     reward, _ = benchmark._verify(machine, task, b"patch")
 
     assert reward == 1
-    assert machine.uploads == [
-        (b"patch", "/workspace/.smolbench-model.patch")
-    ]
+    assert machine.uploads == [(b"patch", "/workspace/.smolbench-model.patch")]
     assert "/workspace/.smolbench-model.patch" in machine.commands[0][0]
     assert "/workspace/.smolbench-reward" in machine.commands[0][0]
 
 
-def test_candidate_downloads_patch_from_persistent_workspace(monkeypatch, tmp_path: Path):
+def test_candidate_downloads_patch_from_persistent_workspace(
+    monkeypatch, tmp_path: Path
+):
     task = benchmark.load_task(_task_tree(tmp_path), "example-task")
     machine = _Machine("candidate")
     downloaded: list[str] = []
