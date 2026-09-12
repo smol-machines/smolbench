@@ -52,4 +52,4 @@ The Daytona account used for this test did not include Linux VM forks, so this c
 - Daytona cost uses its published reserved CPU, memory, and disk rates over the measured sandbox lifetime.
 - Model inference, Daytona credits, snapshot storage, and network egress are excluded.
 
-The exact measurements are in [`results/deepswe-daytona-successful-summary.json`](../results/deepswe-daytona-successful-summary.json).
+The exact measurements are in [`results/deepswe-daytona-efficiency-summary.json`](../results/deepswe-daytona-efficiency-summary.json).
