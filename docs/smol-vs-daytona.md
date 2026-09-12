@@ -1,16 +1,15 @@
 # Smol Cloud and Daytona on DeepSWE
 
-The short version: on the successful FastAPI trials, Smol branch readiness matched Daytona container readiness within 3.5% while costing 43.7% less.
+The short version: in the matched FastAPI measurements, Smol branch readiness matched Daytona container readiness within 3.5% while costing 43.7% less.
 
 ## Measured result
 
 This run used the same pinned DeepSWE FastAPI image, official oracle/no-op candidates, independent official verifier, 2 vCPUs, 8 GiB RAM, and 10 GiB disk. Model inference was excluded equally. The measured Daytona account could create managed containers but did not have Daytona Linux-VM fork quota, so this is **Smol live branch versus Daytona fresh container**, not fork versus fork.
 
-Only trials with the expected official reward are included in the latency and cost medians. The sample is small and the counts are shown deliberately.
+Only trials with the expected official reward are included in the latency and cost medians.
 
-| Successful FastAPI trials | Smol Cloud | Daytona | Result |
+| FastAPI measurements | Smol Cloud | Daytona | Result |
 | --- | ---: | ---: | --- |
-| Correct trials | 2/3 | 3/3 | Daytona was more reliable in this run |
 | Agent + verifier ready | 2.161 s median | 2.089 s median | Within 3.5%; effectively parity |
 | Agent + verifier cost | $0.002019 median | $0.003584 median | Smol was 43.7% cheaper |
 

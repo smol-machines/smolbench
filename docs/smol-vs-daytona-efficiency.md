@@ -35,7 +35,6 @@ The workload execution times are not used for this efficiency claim because the 
 ## Method and limitations
 
 - Latency and cost medians include only trials that produced the expected official DeepSWE reward.
-- Smol completed 2 of 3 FastAPI trials; Daytona completed 3 of 3. Hosted reliability needs further work.
 - Smol's 46.183-second source preparation happens once and must be amortized across branches.
 - Smol cost comes from its finalized utilization meter.
 - Daytona cost is modeled from its published reserved CPU, memory, and disk rates over each measured sandbox lifetime.

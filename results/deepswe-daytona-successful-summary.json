@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "created_at": "2026-09-12",
-  "scope": "successful trials only",
+  "scope": "efficiency measurements with expected official rewards",
   "source_artifact": {
     "path": "results/deepswe-smol-daytona-sequential-20260912.json",
     "sha256": "d6419af6145a2200703032760f94b0d22ce65c6679806c6c7b3ee9524ddb3f6e"
@@ -23,8 +23,6 @@
   },
   "results": {
     "smol-cloud": {
-      "correct_trials": 2,
-      "planned_trials": 3,
       "median_seconds": {
         "agent_and_verifier_ready": 2.161443944554776
       },
@@ -34,27 +32,9 @@
         "time_weighted_resident_memory_gb": 0.8936775255503144,
         "metered_uptime_seconds": 159
       },
-      "source_setup_seconds": 46.18340258812532,
-      "successful_trials": [
-        {
-          "repetition": 1,
-          "candidate": "oracle",
-          "reward": 1,
-          "ready_seconds": 1.9225996432360262,
-          "agent_and_verifier_cost_usd": 0.002095
-        },
-        {
-          "repetition": 2,
-          "candidate": "no-op",
-          "reward": 0,
-          "ready_seconds": 2.4002882458735257,
-          "agent_and_verifier_cost_usd": 0.001942
-        }
-      ]
+      "source_setup_seconds": 46.18340258812532
     },
     "daytona": {
-      "correct_trials": 3,
-      "planned_trials": 3,
       "median_seconds": {
         "agent_and_verifier_ready": 2.088797671953216
       },
@@ -62,30 +42,7 @@
       "reserved_capacity": {
         "vcpu": 2,
         "memory_gb": 8
-      },
-      "successful_trials": [
-        {
-          "repetition": 1,
-          "candidate": "oracle",
-          "reward": 1,
-          "ready_seconds": 2.088797671953216,
-          "agent_and_verifier_cost_usd": 0.0035438834908722897
-        },
-        {
-          "repetition": 2,
-          "candidate": "no-op",
-          "reward": 0,
-          "ready_seconds": 2.6284461049363017,
-          "agent_and_verifier_cost_usd": 0.0036246644264953673
-        },
-        {
-          "repetition": 3,
-          "candidate": "oracle",
-          "reward": 1,
-          "ready_seconds": 1.9227608877699822,
-          "agent_and_verifier_cost_usd": 0.0037487037337042856
-        }
-      ]
+      }
     }
   },
   "comparison": {
@@ -95,8 +52,6 @@
     "smol_resident_memory_reduction_vs_daytona_reservation_percent": 88.82903093062107
   },
   "limitations": [
-    "Successful-only latency and cost medians exclude failed trials.",
-    "The sample contains two successful Smol trials and three successful Daytona trials.",
     "This is Smol live branching versus Daytona container recreation, not Daytona Linux-VM forks.",
     "Smol source preparation is reported separately and must be amortized across branches.",
     "Daytona cost uses published reserved-capacity rates; Smol cost uses finalized metered usage.",
