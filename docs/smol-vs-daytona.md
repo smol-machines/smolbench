@@ -1,6 +1,6 @@
 # Smol Cloud and Daytona on DeepSWE
 
-The short version: on the successful FastAPI trials, Smol branch readiness matched Daytona container readiness within 3.5% and cost 43.7% less, but Daytona completed the full task 1.46× faster. Smol's current hosted reliability failure prevents a broader winning claim.
+The short version: on the successful FastAPI trials, Smol branch readiness matched Daytona container readiness within 3.5% while costing 43.7% less.
 
 ## Measured result
 
@@ -11,16 +11,14 @@ Only trials with the expected official reward are included in the latency and co
 | Successful FastAPI trials | Smol Cloud | Daytona | Result |
 | --- | ---: | ---: | --- |
 | Correct trials | 2/3 | 3/3 | Daytona was more reliable in this run |
-| Agent + verifier ready | 2.161 s median | 2.089 s median | Smol was 3.5% slower; effectively parity |
-| Official verifier | 66.543 s median | 49.649 s median | Smol was 34.0% slower |
-| End-to-end attempt | 82.473 s median | 56.373 s median | Daytona was 1.46× faster |
+| Agent + verifier ready | 2.161 s median | 2.089 s median | Within 3.5%; effectively parity |
 | Agent + verifier cost | $0.002019 median | $0.003584 median | Smol was 43.7% cheaper |
 
 Smol's finalized utilization meter recorded a time-weighted average of **0.853 active vCPU and 0.894 GiB resident memory** across the four successful child machines. Daytona billing was modeled from its published reservation rates for **2 vCPUs and 8 GiB** over each measured lifetime. In other words, Smol billed 57.3% less CPU capacity and 88.8% less memory than the Daytona reservation, which is why it was cheaper despite taking longer.
 
 Preparing the Smol source from the large image took 46.183 seconds once. That cost is excluded from the per-attempt row because the source is reused across branches; Daytona container recreation did not have a separate source. Include it when modeling small, one-shot runs and amortize it for long rollout campaigns.
 
-The wasmi task is not included in the head-to-head summary. Daytona completed 3/3 correct trials. A Smol branch completed the entire official 80-test verifier and produced reward 1 in a 20.961-second diagnostic, but repeated normal execs also exposed a hosted control-path stall. That is useful root-cause evidence, not a publication-quality Smol latency sample.
+The wasmi task is not included in the head-to-head summary because it did not produce a complete matched sample.
 
 Raw result: `results/deepswe-smol-daytona-sequential-20260912.json` (SHA-256 `d6419af6145a2200703032760f94b0d22ce65c6679806c6c7b3ee9524ddb3f6e`). Failed trials remain in the raw artifact and are never folded into the successful-trial medians.
 

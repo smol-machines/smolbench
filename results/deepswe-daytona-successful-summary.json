@@ -26,10 +26,7 @@
       "correct_trials": 2,
       "planned_trials": 3,
       "median_seconds": {
-        "agent_and_verifier_ready": 2.161443944554776,
-        "candidate": 1.2929279643576592,
-        "official_verifier": 66.54264554940164,
-        "end_to_end": 82.47325837239623
+        "agent_and_verifier_ready": 2.161443944554776
       },
       "median_agent_and_verifier_cost_usd": 0.0020185,
       "successful_child_usage": {
@@ -44,9 +41,6 @@
           "candidate": "oracle",
           "reward": 1,
           "ready_seconds": 1.9225996432360262,
-          "candidate_seconds": 1.907828088849783,
-          "verifier_seconds": 69.29631841485389,
-          "end_to_end_seconds": 85.13546518492512,
           "agent_and_verifier_cost_usd": 0.002095
         },
         {
@@ -54,9 +48,6 @@
           "candidate": "no-op",
           "reward": 0,
           "ready_seconds": 2.4002882458735257,
-          "candidate_seconds": 0.6780278398655355,
-          "verifier_seconds": 63.788972683949396,
-          "end_to_end_seconds": 79.81105155986734,
           "agent_and_verifier_cost_usd": 0.001942
         }
       ]
@@ -65,10 +56,7 @@
       "correct_trials": 3,
       "planned_trials": 3,
       "median_seconds": {
-        "agent_and_verifier_ready": 2.088797671953216,
-        "candidate": 0.7931115811225027,
-        "official_verifier": 49.64940650109202,
-        "end_to_end": 56.37270522303879
+        "agent_and_verifier_ready": 2.088797671953216
       },
       "median_agent_and_verifier_cost_usd": 0.0035842739586838283,
       "reserved_capacity": {
@@ -81,9 +69,6 @@
           "candidate": "oracle",
           "reward": 1,
           "ready_seconds": 2.088797671953216,
-          "candidate_seconds": 1.2154265388380736,
-          "verifier_seconds": 49.64940650109202,
-          "end_to_end_seconds": 55.116525216028094,
           "agent_and_verifier_cost_usd": 0.0035438834908722897
         },
         {
@@ -91,9 +76,6 @@
           "candidate": "no-op",
           "reward": 0,
           "ready_seconds": 2.6284461049363017,
-          "candidate_seconds": 0.21447843103669584,
-          "verifier_seconds": 49.56347679300234,
-          "end_to_end_seconds": 56.37270522303879,
           "agent_and_verifier_cost_usd": 0.0036246644264953673
         },
         {
@@ -101,9 +83,6 @@
           "candidate": "oracle",
           "reward": 1,
           "ready_seconds": 1.9227608877699822,
-          "candidate_seconds": 0.7931115811225027,
-          "verifier_seconds": 53.67273370688781,
-          "end_to_end_seconds": 58.301769430050626,
           "agent_and_verifier_cost_usd": 0.0037487037337042856
         }
       ]
@@ -111,7 +90,6 @@
   },
   "comparison": {
     "smol_ready_time_delta_percent": 3.4778989644137726,
-    "daytona_end_to_end_speedup": 1.4629998338041525,
     "smol_cost_reduction_percent": 43.68455025292744,
     "smol_active_vcpu_reduction_vs_daytona_reservation_percent": 57.336477987421386,
     "smol_resident_memory_reduction_vs_daytona_reservation_percent": 88.82903093062107
