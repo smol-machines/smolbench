@@ -1,6 +1,28 @@
-# Smol Cloud and Daytona for coding-agent rollouts
+# Smol Cloud and Daytona on DeepSWE
 
-The short version: both products now support live copy-on-write VM forks. Smol's distinct bet is that a running sandbox should be billed for the CPU, resident memory, and disk it actually uses, and that one warm state should fan out transactionally in a single batch request.
+The short version: on the successful FastAPI trials, Smol branch readiness matched Daytona container readiness within 3.5% and cost 43.7% less, but Daytona completed the full task 1.46× faster. Smol's current hosted reliability failure prevents a broader winning claim.
+
+## Measured result
+
+This run used the same pinned DeepSWE FastAPI image, official oracle/no-op candidates, independent official verifier, 2 vCPUs, 8 GiB RAM, and 10 GiB disk. Model inference was excluded equally. The measured Daytona account could create managed containers but did not have Daytona Linux-VM fork quota, so this is **Smol live branch versus Daytona fresh container**, not fork versus fork.
+
+Only trials with the expected official reward are included in the latency and cost medians. The sample is small and the counts are shown deliberately.
+
+| Successful FastAPI trials | Smol Cloud | Daytona | Result |
+| --- | ---: | ---: | --- |
+| Correct trials | 2/3 | 3/3 | Daytona was more reliable in this run |
+| Agent + verifier ready | 2.161 s median | 2.089 s median | Smol was 3.5% slower; effectively parity |
+| Official verifier | 66.543 s median | 49.649 s median | Smol was 34.0% slower |
+| End-to-end attempt | 82.473 s median | 56.373 s median | Daytona was 1.46× faster |
+| Agent + verifier cost | $0.002019 median | $0.003584 median | Smol was 43.7% cheaper |
+
+Smol's finalized utilization meter recorded a time-weighted average of **0.853 active vCPU and 0.894 GiB resident memory** across the four successful child machines. Daytona billing was modeled from its published reservation rates for **2 vCPUs and 8 GiB** over each measured lifetime. In other words, Smol billed 57.3% less CPU capacity and 88.8% less memory than the Daytona reservation, which is why it was cheaper despite taking longer.
+
+Preparing the Smol source from the large image took 46.183 seconds once. That cost is excluded from the per-attempt row because the source is reused across branches; Daytona container recreation did not have a separate source. Include it when modeling small, one-shot runs and amortize it for long rollout campaigns.
+
+The wasmi task is not included in the head-to-head summary. Daytona completed 3/3 correct trials. A Smol branch completed the entire official 80-test verifier and produced reward 1 in a 20.961-second diagnostic, but repeated normal execs also exposed a hosted control-path stall. That is useful root-cause evidence, not a publication-quality Smol latency sample.
+
+Raw result: `results/deepswe-smol-daytona-sequential-20260912.json` (SHA-256 `d6419af6145a2200703032760f94b0d22ce65c6679806c6c7b3ee9524ddb3f6e`). Failed trials remain in the raw artifact and are never folded into the successful-trial medians.
 
 ## Billing
 
@@ -14,7 +36,7 @@ For the 2-vCPU, 8-GiB shape used by the two default DeepSWE tasks, Daytona's pub
 | 0.5 active vCPU + 4 GiB RSS | $0.1298 | 44% lower |
 | 2 active vCPU + 8 GiB RSS | $0.2696 | 17% higher |
 
-These are scenarios, not measured DeepSWE results. The benchmark records Smol's finalized per-machine meter and models Daytona from measured sandbox lifetime and its published rates, so the resulting report replaces scenarios with observed data. Daytona snapshot storage, credits, and network egress are excluded and identified as such in the artifact.
+These scenarios explain the billing boundary; the measured table above uses finalized Smol meters and Daytona's measured lifetimes. Daytona snapshot storage, credits, and network egress are excluded.
 
 ## Branch compute
 
@@ -60,11 +82,17 @@ export DAYTONA_API_KEY=...
 # Publication-quality run.
 ./demo-deepswe-daytona.sh --repetitions 3
 
+# Reproduce the measured account-compatible shape in this report.
+./demo-deepswe-daytona.sh \
+  --daytona-mode container-recreate \
+  --tasks fastapi-implicit-head-options,wasmi-trap-coredumps \
+  --fanouts 1 --repetitions 3 --storage-gb 10
+
 # Optional diagnostic: compare Daytona's serial single-parent path.
 ./demo-deepswe-daytona.sh --daytona-fanout serial
 ```
 
-The command writes raw JSON and a standalone one-page HTML report under `results/`. A missing trial, unexpected reward, provider error, or cleanup error remains visible in the artifact; an incorrect reward stops the run.
+The command writes raw JSON and a standalone one-page HTML report under `results/`. A missing trial, unexpected reward, provider error, or cleanup error remains visible in the artifact; later repetitions continue so reliability is measured rather than hidden by an early stop.
 
 If an existing scheduler is hard to replace, use the [shadow-lane onboarding plan](daytona-ablation-onboarding.md) to keep its round-robin, retry, and fault-tolerance behavior while changing only the sandbox adapter for a fixed task cohort.
 

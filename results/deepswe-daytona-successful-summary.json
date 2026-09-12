@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-12",
+  "scope": "successful trials only",
+  "source_artifact": {
+    "path": "results/deepswe-smol-daytona-sequential-20260912.json",
+    "sha256": "d6419af6145a2200703032760f94b0d22ce65c6679806c6c7b3ee9524ddb3f6e"
+  },
+  "workload": {
+    "repository": "https://github.com/datacurve-ai/deep-swe.git",
+    "revision": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+    "task": "fastapi-implicit-head-options",
+    "image": "public.ecr.aws/d3j8x8q7/swe-bench-202605:kh7191qb52n5pfwh0a4yhahmt18343sn-v1.1",
+    "cpus": 2,
+    "memory_gb": 8,
+    "disk_gb": 10,
+    "fanout": 1,
+    "model_inference_included": false,
+    "execution": {
+      "smol-cloud": "live branches from one prepared VM",
+      "daytona": "fresh managed containers; measured account had no Linux-VM fork quota"
+    }
+  },
+  "results": {
+    "smol-cloud": {
+      "correct_trials": 2,
+      "planned_trials": 3,
+      "median_seconds": {
+        "agent_and_verifier_ready": 2.161443944554776,
+        "candidate": 1.2929279643576592,
+        "official_verifier": 66.54264554940164,
+        "end_to_end": 82.47325837239623
+      },
+      "median_agent_and_verifier_cost_usd": 0.0020185,
+      "successful_child_usage": {
+        "time_weighted_active_vcpu": 0.8532704402515723,
+        "time_weighted_resident_memory_gb": 0.8936775255503144,
+        "metered_uptime_seconds": 159
+      },
+      "source_setup_seconds": 46.18340258812532,
+      "successful_trials": [
+        {
+          "repetition": 1,
+          "candidate": "oracle",
+          "reward": 1,
+          "ready_seconds": 1.9225996432360262,
+          "candidate_seconds": 1.907828088849783,
+          "verifier_seconds": 69.29631841485389,
+          "end_to_end_seconds": 85.13546518492512,
+          "agent_and_verifier_cost_usd": 0.002095
+        },
+        {
+          "repetition": 2,
+          "candidate": "no-op",
+          "reward": 0,
+          "ready_seconds": 2.4002882458735257,
+          "candidate_seconds": 0.6780278398655355,
+          "verifier_seconds": 63.788972683949396,
+          "end_to_end_seconds": 79.81105155986734,
+          "agent_and_verifier_cost_usd": 0.001942
+        }
+      ]
+    },
+    "daytona": {
+      "correct_trials": 3,
+      "planned_trials": 3,
+      "median_seconds": {
+        "agent_and_verifier_ready": 2.088797671953216,
+        "candidate": 0.7931115811225027,
+        "official_verifier": 49.64940650109202,
+        "end_to_end": 56.37270522303879
+      },
+      "median_agent_and_verifier_cost_usd": 0.0035842739586838283,
+      "reserved_capacity": {
+        "vcpu": 2,
+        "memory_gb": 8
+      },
+      "successful_trials": [
+        {
+          "repetition": 1,
+          "candidate": "oracle",
+          "reward": 1,
+          "ready_seconds": 2.088797671953216,
+          "candidate_seconds": 1.2154265388380736,
+          "verifier_seconds": 49.64940650109202,
+          "end_to_end_seconds": 55.116525216028094,
+          "agent_and_verifier_cost_usd": 0.0035438834908722897
+        },
+        {
+          "repetition": 2,
+          "candidate": "no-op",
+          "reward": 0,
+          "ready_seconds": 2.6284461049363017,
+          "candidate_seconds": 0.21447843103669584,
+          "verifier_seconds": 49.56347679300234,
+          "end_to_end_seconds": 56.37270522303879,
+          "agent_and_verifier_cost_usd": 0.0036246644264953673
+        },
+        {
+          "repetition": 3,
+          "candidate": "oracle",
+          "reward": 1,
+          "ready_seconds": 1.9227608877699822,
+          "candidate_seconds": 0.7931115811225027,
+          "verifier_seconds": 53.67273370688781,
+          "end_to_end_seconds": 58.301769430050626,
+          "agent_and_verifier_cost_usd": 0.0037487037337042856
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "smol_ready_time_delta_percent": 3.4778989644137726,
+    "daytona_end_to_end_speedup": 1.4629998338041525,
+    "smol_cost_reduction_percent": 43.68455025292744,
+    "smol_active_vcpu_reduction_vs_daytona_reservation_percent": 57.336477987421386,
+    "smol_resident_memory_reduction_vs_daytona_reservation_percent": 88.82903093062107
+  },
+  "limitations": [
+    "Successful-only latency and cost medians exclude failed trials.",
+    "The sample contains two successful Smol trials and three successful Daytona trials.",
+    "This is Smol live branching versus Daytona container recreation, not Daytona Linux-VM forks.",
+    "Smol source preparation is reported separately and must be amortized across branches.",
+    "Daytona cost uses published reserved-capacity rates; Smol cost uses finalized metered usage.",
+    "Daytona credits, snapshot storage, and egress are excluded."
+  ]
+}

@@ -29,7 +29,7 @@ import time
 import tomllib
 import uuid
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Protocol
@@ -327,7 +327,12 @@ class SmolProvider:
     def accounting(self) -> dict[str, Any]:
         reports = list(self._reports)
         cost_keys = {key for report in reports for key in report["cost"]}
-        usage_keys = {key for report in reports for key in report["usage"]}
+        usage_keys = {
+            key
+            for report in reports
+            for key, value in report["usage"].items()
+            if isinstance(value, (int, float)) and not isinstance(value, bool)
+        }
         return {
             "basis": "metered by Smol Cloud and finalized at machine deletion",
             "source": SMOL_PRICING_URL,
@@ -381,14 +386,34 @@ class _DaytonaMachine:
         self._owner.record_delete(self.name, self._task, self._started)
 
 
+class _DaytonaContainerSource:
+    """Logical source for Daytona's fresh-container comparison path."""
+
+    def __init__(self, name: str):
+        self.name = name
+
+    def exec(self, command: str, timeout: int) -> ExecResult:
+        raise RuntimeError("container-recreate sources cannot execute commands")
+
+    def upload(self, data: bytes, path: str) -> None:
+        raise RuntimeError("container-recreate sources cannot upload files")
+
+    def download(self, path: str) -> bytes:
+        raise RuntimeError("container-recreate sources cannot download files")
+
+    def delete(self) -> None:
+        return None
+
+
 class DaytonaProvider:
     name = "daytona"
 
-    def __init__(self, *, fanout_method: str):
+    def __init__(self, *, fanout_method: str, mode: str = "vm-fork"):
         from daytona import Daytona
 
         self._client = Daytona()
         self._fanout_method = fanout_method
+        self._mode = mode
         self._reports: list[dict[str, Any]] = []
         self._snapshot_events: list[dict[str, Any]] = []
         self._lock = threading.Lock()
@@ -435,6 +460,11 @@ class DaytonaProvider:
     def prepare_source(self, task: TaskSpec, name: str) -> tuple[Machine, float]:
         from daytona import CreateSandboxFromSnapshotParams
 
+        if getattr(self, "_mode", "vm-fork") == "container-recreate":
+            # Daytona containers cannot be forked. Their equivalent isolation
+            # path creates each attempt directly from the pinned image.
+            return _DaytonaContainerSource(name), 0.0
+
         started = time.perf_counter()
         snapshot, snapshot_seconds, cached = self._ensure_snapshot(task)
         inner_started = time.perf_counter()
@@ -465,6 +495,8 @@ class DaytonaProvider:
     def branch_many(
         self, source: Machine, task: TaskSpec, names: list[str]
     ) -> tuple[list[Machine], float]:
+        if getattr(self, "_mode", "vm-fork") == "container-recreate":
+            return self._create_containers(task, names)
         assert isinstance(source, _DaytonaMachine)
         started = time.perf_counter()
         children: list[Machine] = []
@@ -534,6 +566,45 @@ class DaytonaProvider:
             raise
         return children, time.perf_counter() - started
 
+    def _create_containers(
+        self, task: TaskSpec, names: list[str]
+    ) -> tuple[list[Machine], float]:
+        from daytona import CreateSandboxFromImageParams, Resources
+
+        started = time.perf_counter()
+
+        def create_one(name: str) -> Machine | BaseException:
+            machine_started = time.perf_counter()
+            try:
+                inner = self._client.create(
+                    CreateSandboxFromImageParams(
+                        name=name,
+                        image=task.image,
+                        resources=Resources(
+                            cpu=task.cpus,
+                            memory=math.ceil(task.memory_mb / 1024),
+                            disk=math.ceil(task.storage_mb / 1024),
+                        ),
+                        network_block_all=True,
+                    ),
+                    timeout=1800,
+                )
+                return _DaytonaMachine(self, inner, task, machine_started)
+            except BaseException as error:  # noqa: BLE001
+                return error
+
+        with ThreadPoolExecutor(max_workers=len(names)) as pool:
+            results = list(pool.map(create_one, names))
+        children = [row for row in results if not isinstance(row, BaseException)]
+        failures = [row for row in results if isinstance(row, BaseException)]
+        if failures:
+            cleanup = _delete_all(children)
+            details = "; ".join(str(error) for error in failures)
+            if cleanup:
+                details += "; cleanup: " + "; ".join(cleanup)
+            raise RuntimeError(f"Daytona container creation failed: {details}")
+        return children, time.perf_counter() - started
+
     def record_delete(self, name: str, task: TaskSpec, started: float) -> None:
         lifetime = time.perf_counter() - started
         cpu_hours = task.cpus * lifetime / 3600
@@ -570,6 +641,7 @@ class DaytonaProvider:
                 "disk_per_gb_hour": DAYTONA_DISK_GB_HOUR,
             },
             "fanout_method": self._fanout_method,
+            "execution_mode": getattr(self, "_mode", "vm-fork"),
             "snapshots": self._snapshot_events,
             "machines": reports,
             "modeled_cost_usd": {
@@ -593,7 +665,10 @@ def _checked_exec(
 
 
 def _install_archive(machine: Machine, data: bytes, target: str, label: str) -> None:
-    archive = f"/tmp/smolbench-{label}.tar.gz"
+    # Cloud file uploads are persisted through the machine storage path. Keep
+    # transfer artifacts in /workspace rather than guest tmpfs so provider
+    # adapters have identical, branch-safe semantics.
+    archive = f"/workspace/.smolbench-{label}.tar.gz"
     machine.upload(data, archive)
     _checked_exec(
         machine,
@@ -620,14 +695,14 @@ def _candidate(machine: Machine, task: TaskSpec, candidate: str) -> tuple[bytes,
     base = shlex.quote(task.base_commit)
     _checked_exec(
         machine,
-        "mkdir -p /logs/artifacts && "
         "git config --global --add safe.directory /app && "
-        f"cd /app && git diff --binary {base} HEAD > /logs/artifacts/model.patch",
+        f"cd /app && git diff --binary {base} HEAD "
+        "> /workspace/.smolbench-model.patch",
         300,
         "collect candidate patch",
     )
     return machine.download(
-        "/logs/artifacts/model.patch"
+        "/workspace/.smolbench-model.patch"
     ), time.perf_counter() - started
 
 
@@ -643,19 +718,19 @@ def _reward(payload: bytes) -> int | None:
 def _verify(machine: Machine, task: TaskSpec, patch: bytes) -> tuple[int | None, float]:
     started = time.perf_counter()
     _install_archive(machine, task.tests_archive, "/tests", "tests")
-    machine.upload(patch, "/tmp/model.patch")
+    machine.upload(patch, "/workspace/.smolbench-model.patch")
     _checked_exec(
         machine,
         "mkdir -p /logs/artifacts /logs/verifier && "
-        "cp /tmp/model.patch /logs/artifacts/model.patch && "
-        "chmod +x /tests/test.sh && bash /tests/test.sh",
+        "cp /workspace/.smolbench-model.patch /logs/artifacts/model.patch && "
+        "chmod +x /tests/test.sh && bash /tests/test.sh && "
+        "if test -f /logs/verifier/reward.json; then "
+        "cp /logs/verifier/reward.json /workspace/.smolbench-reward; "
+        "else cp /logs/verifier/reward.txt /workspace/.smolbench-reward; fi",
         1800,
         "run official verifier",
     )
-    try:
-        payload = machine.download("/logs/verifier/reward.json")
-    except Exception:  # noqa: BLE001
-        payload = machine.download("/logs/verifier/reward.txt")
+    payload = machine.download("/workspace/.smolbench-reward")
     return _reward(payload), time.perf_counter() - started
 
 
@@ -694,11 +769,15 @@ def run_wave(
     repetition: int,
     run_id: str,
 ) -> tuple[list[TrialResult], dict[str, Any]]:
-    candidates = ["oracle" if index % 2 == 0 else "no-op" for index in range(fanout)]
-    names = [
+    candidates = [
+        "oracle" if (index + repetition - 1) % 2 == 0 else "no-op"
+        for index in range(fanout)
+    ]
+    agent_names = [
         f"ds-{run_id}-{task.task_id[:12]}-r{repetition}-a{index}"
         for index in range(fanout)
-    ] + [
+    ]
+    verifier_names = [
         f"ds-{run_id}-{task.task_id[:12]}-r{repetition}-v{index}"
         for index in range(fanout)
     ]
@@ -706,16 +785,19 @@ def run_wave(
     started = time.perf_counter()
     cleanup_errors: list[str] = []
     branch_seconds: float | None = None
+    agent_ready_seconds: float | None = None
+    verifier_ready_seconds: float | None = None
     trials: list[TrialResult] = []
     wave_error: str | None = None
     try:
-        children, branch_seconds = provider.branch_many(source, task, names)
-        if len(children) != fanout * 2:
+        agent_children, agent_ready_seconds = provider.branch_many(
+            source, task, agent_names
+        )
+        children.extend(agent_children)
+        if len(agent_children) != fanout:
             raise RuntimeError(
-                f"{provider.name} returned {len(children)} of {fanout * 2} branches"
+                f"{provider.name} returned {len(agent_children)} of {fanout} agent sandboxes"
             )
-        agent_children = children[:fanout]
-        verifier_children = children[fanout:]
         candidate_outputs: list[tuple[bytes, float] | BaseException] = []
 
         def run_candidate(
@@ -730,6 +812,18 @@ def run_wave(
             candidate_outputs = list(
                 pool.map(run_candidate, zip(agent_children, candidates))
             )
+
+        cleanup_errors.extend(_delete_all(agent_children))
+        verifier_children, verifier_ready_seconds = provider.branch_many(
+            source, task, verifier_names
+        )
+        children.extend(verifier_children)
+        if len(verifier_children) != fanout:
+            raise RuntimeError(
+                f"{provider.name} returned {len(verifier_children)} of "
+                f"{fanout} verifier sandboxes"
+            )
+        branch_seconds = agent_ready_seconds + verifier_ready_seconds
 
         def run_verifier(index: int) -> TrialResult:
             output = candidate_outputs[index]
@@ -797,13 +891,17 @@ def run_wave(
     except BaseException as error:  # noqa: BLE001
         wave_error = str(error)
     finally:
-        cleanup_errors = _delete_all(children)
+        cleanup_errors.extend(_delete_all(children))
+        if cleanup_errors and wave_error is None:
+            wave_error = "sandbox cleanup failed: " + "; ".join(cleanup_errors)
     return trials, {
         "provider": provider.name,
         "task": task.task_id,
         "repetition": repetition,
         "fanout": fanout,
         "branch_ready_seconds": branch_seconds,
+        "agent_ready_seconds": agent_ready_seconds,
+        "verifier_ready_seconds": verifier_ready_seconds,
         "wall_seconds": time.perf_counter() - started,
         "error": wave_error,
         "cleanup_errors": cleanup_errors,
@@ -825,7 +923,10 @@ def _provider(name: str, args: argparse.Namespace) -> Provider:
                 "Daytona credentials are required: set DAYTONA_API_KEY, or both "
                 "DAYTONA_JWT_TOKEN and DAYTONA_ORGANIZATION_ID"
             )
-        return DaytonaProvider(fanout_method=args.daytona_fanout)
+        return DaytonaProvider(
+            fanout_method=args.daytona_fanout,
+            mode=getattr(args, "daytona_mode", "vm-fork"),
+        )
     raise ValueError(f"unknown provider: {name}")
 
 
@@ -893,11 +994,20 @@ def render_html(payload: dict[str, Any]) -> str:
                 f"<td>{fanout}</td>{''.join(cells)}</tr>"
             )
     header = "".join(
-        f"<th>{html.escape(name)}<br>branch / end-to-end</th>" for name in providers
+        f"<th>{html.escape(name)}<br>ready / end-to-end</th>" for name in providers
     )
     correct = sum(1 for row in payload["trials"] if row["correct"])
     total = len(payload["trials"])
     status = payload.get("status", "unknown")
+    daytona_mode = payload.get("config", {}).get("daytona_mode", "vm-fork")
+    if daytona_mode == "container-recreate":
+        execution_note = (
+            "Smol creates live branches from one prepared VM; Daytona creates fresh "
+            "containers from the same pinned image because the measured account has "
+            "no Linux-VM fork quota."
+        )
+    else:
+        execution_note = "Both providers create live VM branches from prepared state."
     billing_rows = []
     for provider in providers:
         total_cost, basis = _billing_summary(payload, provider)
@@ -927,11 +1037,11 @@ th,td{{padding:12px;border-bottom:1px solid #ddd;text-align:left}} .ok{{color:#0
 code{{font-size:13px}} details{{margin-top:24px}}
 </style></head><body>
 <h1>Smol Cloud vs Daytona on real DeepSWE environments</h1>
-<p class="lede">Same pinned images, official solutions, official separate verifiers, and independent VM branches. Model latency is removed so this measures infrastructure.</p>
+<p class="lede">Same pinned images, resources, official solutions, and independent official verifiers. Model latency is removed so this measures infrastructure.</p>
 <p class="ok">Run status: {html.escape(status)} · correctness gate: {correct}/{total} expected rewards.</p>
 <table><thead><tr><th>Task</th><th>Fan-out</th>{header}</tr></thead><tbody>{"".join(rows)}</tbody></table>
 <p>End-to-end covers branch creation, candidate work, independent verification, and cleanup; source preparation is recorded separately.</p>
-<div class="note"><strong>What branching means here.</strong> A sequential agent still benefits from starting each attempt after setup. Mid-trajectory branching only applies to retries, candidate search, or subagents. Both products support live VM forks; this run compares their supported fan-out paths.</div>
+<div class="note"><strong>Execution path.</strong> {html.escape(execution_note)} A sequential agent benefits from starting each attempt after setup; mid-trajectory branching applies to retries, candidate search, or subagents.</div>
 <h2>Cost over the measured lifecycle</h2>
 <table><thead><tr><th>Provider</th><th>Total</th><th>Per correct trial</th><th>Basis</th></tr></thead><tbody>{"".join(billing_rows)}</tbody></table>
 <p>Smol records finalized active CPU, resident memory, used disk, and machine-base charges. Daytona is modeled from its published reserved CPU/RAM/disk rates and each measured sandbox lifetime. Daytona snapshot storage, credits, and egress are excluded.</p>
@@ -963,6 +1073,9 @@ def dry_run_payload(tasks: list[TaskSpec], args: argparse.Namespace) -> dict[str
         "fanouts": args.fanouts,
         "repetitions": args.repetitions,
         "daytona_fanout": args.daytona_fanout,
+        "daytona_mode": getattr(args, "daytona_mode", "vm-fork"),
+        "storage_gb_override": getattr(args, "storage_gb", None),
+        "memory_gb_override": getattr(args, "memory_gb", None),
         "planned_sandboxes_per_provider": len(tasks)
         * (1 + sum(2 * fanout * args.repetitions for fanout in args.fanouts)),
     }
@@ -978,6 +1091,12 @@ def _installed_version(package: str) -> str | None:
 def run(args: argparse.Namespace) -> dict[str, Any]:
     checkout = ensure_deepswe(args.cache)
     tasks = [load_task(checkout, task_id) for task_id in args.tasks]
+    if getattr(args, "memory_gb", None) is not None:
+        tasks = [replace(task, memory_mb=args.memory_gb * 1024) for task in tasks]
+    if getattr(args, "storage_gb", None) is not None:
+        tasks = [
+            replace(task, storage_mb=args.storage_gb * 1024) for task in tasks
+        ]
     if args.dry_run:
         return dry_run_payload(tasks, args)
     providers = [_provider(name, args) for name in args.providers]
@@ -1008,7 +1127,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         "seconds": seconds,
                     }
                 )
-                stop_task = False
                 for fanout in args.fanouts:
                     for repetition in range(1, args.repetitions + 1):
                         wave_trials, wave = run_wave(
@@ -1026,8 +1144,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                 f"{provider.name} {task.task_id} fanout={fanout} "
                                 f"repetition={repetition}: {wave['error']}"
                             )
-                            stop_task = True
-                            break
                         if not wave_trials or not all(
                             row.correct for row in wave_trials
                         ):
@@ -1035,10 +1151,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                 f"correctness gate failed for {provider.name} "
                                 f"{task.task_id} fanout={fanout} repetition={repetition}"
                             )
-                            stop_task = True
-                            break
-                    if stop_task:
-                        break
     finally:
         cleanup_errors.extend(_delete_all(list(reversed(sources))))
     expected_trials = len(providers) * len(tasks) * args.repetitions * sum(args.fanouts)
@@ -1064,13 +1176,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "deep_swe": {"repository": DEEPSWE_REPOSITORY, "revision": DEEPSWE_REVISION},
         "method": (
             "Pinned DeepSWE image; official oracle and no-op candidates; official "
-            "separate verifier; provider source prepared once; fresh agent and verifier "
-            "branches per trial; model inference excluded."
+            "separate verifier; fresh isolated agent and verifier sandboxes per trial; "
+            "Smol uses branches while Daytona uses the configured execution mode; "
+            "model inference excluded."
         ),
         "config": {
             "fanouts": args.fanouts,
             "repetitions": args.repetitions,
             "daytona_fanout": args.daytona_fanout,
+            "daytona_mode": getattr(args, "daytona_mode", "vm-fork"),
+            "storage_gb_override": getattr(args, "storage_gb", None),
+            "memory_gb_override": getattr(args, "memory_gb", None),
         },
         "providers": [provider.name for provider in providers],
         "tasks": [
@@ -1122,6 +1238,25 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default="tree",
         help="Daytona fan-out strategy; tree is its documented scale path",
     )
+    parser.add_argument(
+        "--daytona-mode",
+        choices=("vm-fork", "container-recreate"),
+        default="vm-fork",
+        help=(
+            "vm-fork uses Daytona Linux-VM snapshots; container-recreate measures "
+            "fresh Daytona containers when VM quota is unavailable"
+        ),
+    )
+    parser.add_argument(
+        "--storage-gb",
+        type=int,
+        help="override task storage for both providers (for matched quota tests)",
+    )
+    parser.add_argument(
+        "--memory-gb",
+        type=int,
+        help="override task memory for both providers (for matched quota tests)",
+    )
     parser.add_argument("--cache", type=Path, default=Path(".cache/deepswe-daytona"))
     parser.add_argument(
         "--output", type=Path, default=Path("results/deepswe-daytona.json")
@@ -1147,6 +1282,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error("--fanouts values must be between 1 and 32")
     if args.repetitions < 1:
         parser.error("--repetitions must be positive")
+    if args.storage_gb is not None and args.storage_gb < 1:
+        parser.error("--storage-gb must be positive")
+    if args.memory_gb is not None and args.memory_gb < 1:
+        parser.error("--memory-gb must be positive")
     return args
 
 
@@ -1167,6 +1306,9 @@ def main(argv: list[str] | None = None) -> int:
                 "fanouts": args.fanouts,
                 "repetitions": args.repetitions,
                 "daytona_fanout": args.daytona_fanout,
+                "daytona_mode": args.daytona_mode,
+                "storage_gb_override": args.storage_gb,
+                "memory_gb_override": args.memory_gb,
             },
             "providers": args.providers,
             "tasks": [],
