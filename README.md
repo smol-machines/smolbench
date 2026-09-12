@@ -148,6 +148,20 @@ Open the [public scorecard](results/scorecard.html) for the consolidated results
 | Braintrust `bash-agent-evals` | Branch an inherited live Node/SQLite worker | 4 | **2.58× faster than fresh Podman** |
 | CPU and memory control | Same Python hashing/compression/JSON image | 16 | **1.05× faster, 6.12× lower memory pressure** |
 
+## Compare Smol Cloud and Daytona on DeepSWE
+
+The provider comparison runs two pinned public DeepSWE tasks through both hosted systems. It prepares one live VM per task, measures sequential and four-way branch paths, applies official oracle/no-op candidates, and grades every result in an independent official verifier environment. It also records finalized Smol utilization billing and a Daytona reserved-capacity estimate from the measured sandbox lifetimes.
+
+```bash
+# Inspect the exact plan without credentials or billable work.
+./demo-deepswe-daytona.sh --dry-run
+
+SMOL_CLOUD_TOKEN=... DAYTONA_API_KEY=... \
+  ./demo-deepswe-daytona.sh --repetitions 3
+```
+
+See [the one-page comparison](docs/smol-vs-daytona.md) for the billing model, where branching applies to sequential rollouts, and the limits of the claim.
+
 Most agent/eval rows are full steady-state lifecycle comparisons on the same 26-vCPU host. Harbor Index, Braintrust, and the CPU/memory control are identified separately on an eight-core bare-metal host. These are not claims that guest instructions run faster than native containers. The negative controls are kept on purpose: they show that branching helps when initialized state is material, and does not help when the whole task is already a few hundred milliseconds. Each section below contains the exact command, pinned workload identity, repetitions, correctness gate and raw validated report.
 
 ## Reproduce the Terminal-Bench demo
