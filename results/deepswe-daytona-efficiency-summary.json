@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-12",
+  "scope": "efficiency measurements with expected official rewards",
+  "workload": {
+    "repository": "https://github.com/datacurve-ai/deep-swe.git",
+    "revision": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+    "task": "fastapi-implicit-head-options",
+    "image": "public.ecr.aws/d3j8x8q7/swe-bench-202605:kh7191qb52n5pfwh0a4yhahmt18343sn-v1.1",
+    "cpus": 2,
+    "memory_gb": 8,
+    "disk_gb": 10,
+    "fanout": 1,
+    "model_inference_included": false,
+    "execution": {
+      "smol-cloud": "live branches from one prepared VM",
+      "daytona": "fresh managed containers; measured account had no Linux-VM fork quota"
+    }
+  },
+  "results": {
+    "smol-cloud": {
+      "median_seconds": {
+        "agent_and_verifier_ready": 2.161443944554776
+      },
+      "median_agent_and_verifier_cost_usd": 0.0020185,
+      "child_usage": {
+        "time_weighted_active_vcpu": 0.8532704402515723,
+        "time_weighted_resident_memory_gb": 0.8936775255503144,
+        "metered_uptime_seconds": 159
+      },
+      "source_setup_seconds": 46.18340258812532
+    },
+    "daytona": {
+      "median_seconds": {
+        "agent_and_verifier_ready": 2.088797671953216
+      },
+      "median_agent_and_verifier_cost_usd": 0.0035842739586838283,
+      "reserved_capacity": {
+        "vcpu": 2,
+        "memory_gb": 8
+      }
+    }
+  },
+  "comparison": {
+    "smol_ready_time_delta_percent": 3.4778989644137726,
+    "smol_cost_reduction_percent": 43.68455025292744,
+    "smol_active_vcpu_reduction_vs_daytona_reservation_percent": 57.336477987421386,
+    "smol_resident_memory_reduction_vs_daytona_reservation_percent": 88.82903093062107
+  },
+  "limitations": [
+    "This is Smol live branching versus Daytona container recreation, not Daytona Linux-VM forks.",
+    "Smol source preparation is reported separately and must be amortized across branches.",
+    "Daytona cost uses published reserved-capacity rates; Smol cost uses finalized metered usage.",
+    "Daytona credits, snapshot storage, and egress are excluded."
+  ]
+}
