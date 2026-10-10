@@ -17,7 +17,12 @@ v=$(perf bench mem memcpy -s 1GB 2>&1 | awk '/GB\/sec/{print $1; exit}'); echo "
 if [ "$FULL" = "--full" ]; then
   have go || apk add --no-cache -q go git >/dev/null
   [ -d /tmp/goreleaser ] || git clone -q --depth 1 https://github.com/goreleaser/goreleaser /tmp/goreleaser
-  cd /tmp/goreleaser && go mod download >/dev/null 2>&1 && go clean -cache
-  s=$(date +%s.%N); go build -a -o /dev/null ./... >/dev/null 2>&1 || go build -a -o /dev/null . >/dev/null 2>&1; e=$(date +%s.%N)
+  # GoReleaser tracks the newest Go; let go fetch the toolchain go.mod asks for, outside the timed part.
+  export GOTOOLCHAIN=auto
+  cd /tmp/goreleaser && go version >/dev/null && go mod download >/dev/null 2>&1 && go clean -cache
+  # busybox date has no %N; /proc/uptime has 10 ms resolution, plenty for a multi-minute build.
+  s=$(cut -d' ' -f1 /proc/uptime)
+  go build -a -o /dev/null . >/dev/null 2>&1 || { echo "goreleaser build failed" >&2; exit 1; }
+  e=$(cut -d' ' -f1 /proc/uptime)
   echo "goreleaser_build_seconds,$(awk "BEGIN{printf \"%.1f\", $e-$s}"),s"
 fi
