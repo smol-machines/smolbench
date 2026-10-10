@@ -10,7 +10,7 @@ $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $flag = if ($Full) { "--full" } else { "" }
 $results = @()
 function Parse($lines, $target, $run) {
-  foreach ($l in $lines) { if ($l -match '^([a-z_]+),([^,]+),(.+)$') { $script:results += [pscustomobject]@{ target=$target; run=$run; name=$Matches[1]; value=$Matches[2]; unit=$Matches[3] } } }
+  foreach ($l in $lines) { if ($l -match '^([a-z0-9_]+),([^,]+),(.+)$') { $script:results += [pscustomobject]@{ target=$target; run=$run; name=$Matches[1]; value=$Matches[2]; unit=$Matches[3] } } }
 }
 $wslHere = (wsl -d $Distro -- wslpath -a ($here -replace "\\", "/")).Trim()
 $wslPath = "$wslHere/guest.sh"
@@ -20,9 +20,9 @@ for ($r = 1; $r -le $Runs; $r++) {
   Parse $out "wsl" $r
   if ($Fs) { Parse (wsl -d $Distro -- sh "$wslHere/fs.sh" $wslHere /root 2>&1) "wsl" $r }
   Write-Host "== smolvm run $r"
-  $out = smolvm machine run --net --cpus 2 --mem 4096 --image alpine:3.23 -v "${here}:/bench" -- sh /bench/guest.sh $flag 2>&1
+  $out = smolvm machine run --net --cpus 2 --mem 4096 --image mirror.gcr.io/library/alpine:3.23 -v "${here}:/bench" -- sh /bench/guest.sh $flag 2>&1
   Parse $out "smolvm" $r
-  if ($Fs) { Parse (smolvm machine run --net --cpus 2 --mem 4096 --image alpine:3.23 -v "${here}:/bench" -- sh /bench/fs.sh /bench /root 2>&1) "smolvm" $r }
+  if ($Fs) { Parse (smolvm machine run --net --cpus 2 --mem 4096 --image mirror.gcr.io/library/alpine:3.23 -v "${here}:/bench" -- sh /bench/fs.sh /bench /root 2>&1) "smolvm" $r }
 }
 $results | Export-Csv -NoTypeInformation -Path "$here/results.csv"
 Write-Host "`nmedian of $Runs runs"
