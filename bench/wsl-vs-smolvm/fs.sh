@@ -6,8 +6,10 @@
 # Prints `name,value,unit` lines.
 set -eu
 N=${FS_FILES:-2000}
-now() { cut -d' ' -f1 /proc/uptime; }
-el() { awk "BEGIN{printf \"%.2f\", $2-$1}"; }
+# Monotonic nanoseconds from /proc/timer_list; /proc/uptime's 10 ms ticks are too coarse for
+# the ~0.1 s 1 GB transfers.
+now() { awk '/now at/{printf "%.6f\n", $3/1e9; exit}' /proc/timer_list; }
+el() { awk "BEGIN{printf \"%.3f\", $2-$1}"; }
 # A source tree to copy around: N files of 4 KiB in 20 directories.
 src=/tmp/fs-src.$$; mkdir -p $src
 i=0; while [ $i -lt $N ]; do d=$src/d$((i % 20)); [ -d $d ] || mkdir $d; head -c 4096 /dev/urandom > $d/f$i; i=$((i+1)); done
