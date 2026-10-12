@@ -440,4 +440,4 @@ Apache-2.0.
 
 ## WSL vs smolvm on Windows
 
-`bench/wsl-vs-smolvm/` runs the [WSL2-vs-WSL3 post's](https://tonym.us/wsl2-vs-wsl3-benchmarks.html) perf and GoReleaser workloads in the same 2 vCPU / 4 GB Alpine guest under WSL and under smolvm on the Windows Hypervisor Platform, on one Windows box, and reports medians. See its README.
+`bench/wsl-vs-smolvm/` runs the [WSL2-vs-WSL3 post's](https://tonym.us/wsl2-vs-wsl3-benchmarks.html) perf and GoReleaser workloads, plus file I/O on a shared Windows folder and on the guest disk, in the same 2 vCPU / 4 GB Alpine guest under WSL and under smolvm on the Windows Hypervisor Platform, on one Windows box, and reports medians. See its README.

@@ -12,6 +12,9 @@ $results = @()
 function Parse($lines, $target, $run) {
   foreach ($l in $lines) { if ($l -match '^([a-z0-9_]+),([^,]+),(.+)$') { $script:results += [pscustomobject]@{ target=$target; run=$run; name=$Matches[1]; value=$Matches[2]; unit=$Matches[3] } } }
 }
+wsl -d $Distro -- true 2>&1 | Out-Null
+if ($LASTEXITCODE -ne 0) { Write-Error "no WSL distro named '$Distro' (see wsl -l -v); pass -Distro <name>"; exit 1 }
+if (-not (Get-Command smolvm -ErrorAction SilentlyContinue)) { Write-Error "smolvm.exe is not on PATH"; exit 1 }
 $wslHere = (wsl -d $Distro -- wslpath -a ($here -replace "\\", "/")).Trim()
 $wslPath = "$wslHere/guest.sh"
 for ($r = 1; $r -le $Runs; $r++) {

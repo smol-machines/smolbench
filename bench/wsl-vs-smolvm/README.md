@@ -19,6 +19,9 @@ the median, and writes `results.csv`.
 smolvm pulls Alpine from `mirror.gcr.io`, because back-to-back ephemeral runs hit Docker Hub's
 anonymous pull limit.
 
+Use smolvm 1.27.0 or newer; older releases miss the Windows fixes and land well behind WSL2.
+Results from a Ryzen AI Max+ 395 laptop are under `results/`; `z13-2026-10-11` is the 1.27.0 release.
+
 Setup on the Windows side: an Alpine WSL distro (import the minirootfs with `wsl --import`), a
 `.wslconfig` with `processors=2` and `memory=4GB` followed by `wsl --shutdown`, and `smolvm.exe` on
 PATH with the Windows Hypervisor Platform feature enabled. Report the WSL version (`wsl --version`),
