@@ -1,9 +1,9 @@
 # WSL vs smolvm on the same Windows box, same guest script, same 2 vCPU / 4 GB.
-#   .\run.ps1 [-Distro Alpine] [-Full] [-Fs] [-Runs 3]   (-Fs adds file I/O on a Windows folder and on the guest disk)
+#   .\run.ps1 [-Distro Alpine] [-Full] [-Fs] [-Git] [-Runs 3]   (-Fs adds file I/O, -Git adds git workloads, both on a Windows folder and on the guest disk)
 # Prereqs: WSL with an Alpine distro (import the Alpine minirootfs: wsl --import Alpine C:\wsl\alpine alpine-minirootfs-3.23.0-x86_64.tar),
 #   %USERPROFILE%\.wslconfig with processors=2 and memory=4GB (then `wsl --shutdown`),
 #   smolvm.exe on PATH with the Windows Hypervisor Platform feature enabled.
-param([string]$Distro = "Alpine", [switch]$Full, [switch]$Fs, [int]$Runs = 3)
+param([string]$Distro = "Alpine", [switch]$Full, [switch]$Fs, [switch]$Git, [int]$Runs = 3)
 # Native tools write progress to stderr; Windows PowerShell 5.1 would turn that into a terminating error under "Stop".
 $ErrorActionPreference = "Continue"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -22,10 +22,12 @@ for ($r = 1; $r -le $Runs; $r++) {
   $out = wsl -d $Distro -- sh $wslPath $flag 2>&1
   Parse $out "wsl" $r
   if ($Fs) { Parse (wsl -d $Distro -- sh "$wslHere/fs.sh" $wslHere /root 2>&1) "wsl" $r }
+  if ($Git) { Parse (wsl -d $Distro -- sh "$wslHere/git.sh" $wslHere /root 2>&1) "wsl" $r }
   Write-Host "== smolvm run $r"
   $out = smolvm machine run --net --cpus 2 --mem 4096 --image mirror.gcr.io/library/alpine:3.23 -v "${here}:/bench" -- sh /bench/guest.sh $flag 2>&1
   Parse $out "smolvm" $r
   if ($Fs) { Parse (smolvm machine run --net --cpus 2 --mem 4096 --image mirror.gcr.io/library/alpine:3.23 -v "${here}:/bench" -- sh /bench/fs.sh /bench /root 2>&1) "smolvm" $r }
+  if ($Git) { Parse (smolvm machine run --net --cpus 2 --mem 4096 --image mirror.gcr.io/library/alpine:3.23 -v "${here}:/bench" -- sh /bench/git.sh /bench /root 2>&1) "smolvm" $r }
 }
 $results | Export-Csv -NoTypeInformation -Path "$here/results.csv"
 Write-Host "`nmedian of $Runs runs"

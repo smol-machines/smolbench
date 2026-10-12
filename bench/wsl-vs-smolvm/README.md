@@ -14,7 +14,11 @@ the median, and writes `results.csv`.
 ```powershell
 .\run.ps1                       # perf workloads, 3 runs each
 .\run.ps1 -Full -Fs -Runs 3     # adds the GoReleaser cold build and the file I/O suite
+.\run.ps1 -Git -Runs 3          # adds git clone/status/checkout/log/grep on git's own repo
 ```
+
+`git.sh` fetches git's repository once into `.gitbench-cache.git` next to the kit; later
+runs copy it to `/tmp` before timing, so the network never counts.
 
 smolvm pulls Alpine from `mirror.gcr.io`, because back-to-back ephemeral runs hit Docker Hub's
 anonymous pull limit.

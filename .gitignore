@@ -39,3 +39,5 @@ results/*.html
 !results/braintrust-warm-baremetal-i9700-5x4.json
 !results/cloud-branch-state.json
 !results/deepswe-daytona-efficiency-summary.json
+bench/wsl-vs-smolvm/.gitbench-cache.git/
+bench/wsl-vs-smolvm/results.csv
