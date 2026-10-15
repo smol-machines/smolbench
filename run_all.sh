@@ -13,7 +13,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
-SUITES="cold_start,cpu,io,network"
+SUITES="cold_start,cpu,io,network,lifecycle"
 OUTPUT=""
 
 while [[ $# -gt 0 ]]; do

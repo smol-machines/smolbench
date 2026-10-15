@@ -1,6 +1,6 @@
 # smolbench
-Performance benchmarks for smolvm. Measures cold start, CPU, IO, and network
-across host, CLI, and HTTP API paths.
+Performance benchmarks for smolvm. Measures cold start, CPU, IO, network and
+machine lifecycle operations across host, CLI, and HTTP API paths.
 
 ## Quick start
 
@@ -37,6 +37,8 @@ benchmarks (the scripts work without it, reads will just be cached).
 | `SMOLVM` | auto-detect | Path to smolvm binary |
 | `ITERATIONS` | `5` | Default iteration count |
 | `BENCH_API_PORT` | `18099` | Port for the HTTP API server |
+| `BENCH_IMAGE` | `alpine:3.20` | Image for the lifecycle suite's image runs |
+| `BENCH_CP_MIB` | `256` | File size for the lifecycle suite's `machine cp` |
 
 Use `SMOLVM` to bench a specific binary:
 
@@ -91,6 +93,29 @@ VM tests if the guest has no connectivity (host baselines still run).
 | `dnsResolutionMs` | ms | `nslookup example.com` |
 | `httpRoundTripMs` | ms | `wget http://example.com` |
 
+### lifecycle
+
+Times the machine operations most workflows are built from. Every timed
+operation must succeed and its result is checked: exec output is compared,
+copied files are compared byte for byte, a restored machine must read back a
+file written before the checkpoint, and a branch child must exec. A broken
+binary fails the suite instead of looking fast. Image runs are skipped if the
+image cannot be pulled.
+
+| Test | Unit | Description |
+|------|------|-------------|
+| `startMs` / `stopMs` | ms | `machine start` / `machine stop` of a bare machine |
+| `runBareMs` | ms | `machine run -- echo` |
+| `runImageMs` | ms | `machine run --image alpine:3.20 -- echo`, seed warm |
+| `execMs` | ms | `machine exec -- echo` on a running machine |
+| `cpUploadMBps` / `cpDownloadMBps` | MB/s | `machine cp` of a random file each way |
+| `checkpointMs` | ms | `machine checkpoint` of a running bare machine |
+| `checkpointPauseMs` | ms | Source pause the checkpoint reports |
+| `restoreMs` | ms | `machine create --from` the checkpoint, start, first exec |
+| `branchMs` | ms | `machine branch` of one named child from a `--branchable` source |
+| `packCreateMs` | ms | `pack create --from-vm` of a stopped bare machine |
+| `packRunMs` | ms | Warm `pack run` of that pack |
+
 ## Output
 
 Each suite writes JSON to stdout (logs go to stderr). `run_all.sh` merges
@@ -125,6 +150,7 @@ smolbench/
   bench_cpu.sh         # Compute + exec overhead
   bench_io.sh          # Disk throughput (dd)
   bench_network.sh     # DNS + HTTP latency
+  bench_lifecycle.sh   # Machine lifecycle operations
   results/             # Auto-generated reports
 ```
 ## Workload and branching benchmarks
