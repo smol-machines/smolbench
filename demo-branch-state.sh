@@ -17,9 +17,9 @@ cleanup() {
   local index name
   for ((index = 0; index < fanout; index++)); do
     name="$prefix-$index"
-    smolvm machine delete --name "$name" >/dev/null 2>&1 || true
+    smolvm machine delete --name "$name" --force >/dev/null 2>&1 || true
   done
-  smolvm machine delete --name "$golden" >/dev/null 2>&1 || true
+  smolvm machine delete --name "$golden" --cascade >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
 
