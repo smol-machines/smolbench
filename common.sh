@@ -41,10 +41,14 @@ init_smolvm() {
 
     if [[ "$(uname -s)" == "Darwin" ]]; then
         local lib_dir="$PROJECT_ROOT/lib"
-        [[ -d "$lib_dir" ]] && export DYLD_LIBRARY_PATH="${lib_dir}${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+        if [[ -d "$lib_dir" ]]; then
+            export DYLD_LIBRARY_PATH="${lib_dir}${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+        fi
     else
         local lib_dir="$PROJECT_ROOT/lib/linux-$(uname -m)"
-        [[ -d "$lib_dir" ]] && export LD_LIBRARY_PATH="${lib_dir}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        if [[ -d "$lib_dir" ]]; then
+            export LD_LIBRARY_PATH="${lib_dir}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        fi
     fi
 }
 
